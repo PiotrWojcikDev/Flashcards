@@ -1,0 +1,15 @@
+<nav class="navbar">
+    <div class="navbar-container">
+      <a href="/" class="navbar-logo">
+        <img src="assets/images/logo.png" alt="Logo">
+      </a>
+      <button class="navbar-toggler" (click)="toggleNavbar()">Menu</button>
+      <div class="navbar-links" [class.active]="navbarOpen">
+      <!--<a href="/">Strona Główna</a> -->
+      <a href="/about">O aplikacji</a>
+      <a href="/login">Logowanie</a>
+      <a href="/register">Rejestracja</a>
+    </div>
+    </div>
+  </nav>
+  

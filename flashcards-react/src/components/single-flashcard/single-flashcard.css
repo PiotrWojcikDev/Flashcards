@@ -1,0 +1,39 @@
+/* SingleFlashcard.css */
+.flashcard-container {
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.paragraph-margin {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #444;
+    text-align: center;
+    overflow: hidden;
+}
+
+.flashcard-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+}
+
+button:hover {
+    opacity: 0.8;
+}

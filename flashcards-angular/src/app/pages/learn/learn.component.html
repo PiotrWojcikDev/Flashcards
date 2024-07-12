@@ -1,0 +1,38 @@
+<div class="main-container">
+    <p>Do nauczenia: {{ remainingCards  }} / {{ totalFlashcards }}</p>
+    <div class="container">
+        <div class="card">
+            <div class="front">
+                <p>
+                    {{ allFlashcards[currentFlashcardIndex]?.front }}
+                </p>
+            </div>
+            <div class="back">
+                <p>{{ allFlashcards[currentFlashcardIndex]?.back }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="response">
+        <button class="know-button" (click)="answerFlashcard(true)">
+            Znam
+        </button>
+        <button class="unknown-button" (click)="answerFlashcard(false)">
+            Nie wiem
+        </button>
+    </div>
+    
+    <div class="results">
+        <div class="correct">
+            <i class="fa-solid fa-check"></i>
+            {{ correctAnswers }}
+        </div>
+        <div class="incorrect">
+            <i class="fa-solid fa-xmark"></i>
+            {{ inCorrectAnswers }}
+        </div>
+        
+        
+    </div>
+</div>
+<app-learning-finished-modal *ngIf="setService.showLearningFinishedModal === true"></app-learning-finished-modal>

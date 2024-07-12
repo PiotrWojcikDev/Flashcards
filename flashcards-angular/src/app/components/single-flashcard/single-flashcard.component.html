@@ -1,0 +1,12 @@
+<div class="flashcard-container">
+    <div class="flashcard-details">
+        <p class="paragrapgh-margin"> {{ flashcardObj.front }}</p>
+        <p class="paragrapgh-margin"></p>
+        <p class="paragrapgh-margin">{{ flashcardObj.back }}</p>
+    </div>
+    <div class="flashcard-actions">
+        <button (click)="editFlashcard(flashcardObj.flashcardId)">Edytuj</button>
+        <button (click)="deleteFlashcard(flashcardObj.flashcardId)">Usuń</button>
+    </div>
+</div>
+<app-delete-flashcard-confirmation-modal *ngIf="flashcardService.showDeleteFlashcardConfirmationModal === true" [flashcardObj]="flashcardObj" (onDelete)="onDelete.emit()" (onDeleteCancel)="onDeleteCancel.emit()" ></app-delete-flashcard-confirmation-modal>

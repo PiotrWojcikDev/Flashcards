@@ -1,0 +1,26 @@
+<div id="overlay" (click)="closeAddModal()"></div>
+<div id="container">
+    <div id="header">Dodawanie fiszki</div>
+    <form [formGroup]="addFlashcardForm" (ngSubmit)="addFlashcard()">
+        <div id="content">
+            <div class="field">
+                <!-- <label for="front">Przód fiszki:</label> -->
+                <input type="text" id="front" formControlName="front" placeholder="Przód fiszki">
+                <span *ngIf="addFlashcardForm.controls['front'].errors?.['required'] && (addFlashcardForm.controls['front'].dirty || addFlashcardForm.controls['front'].touched)">
+                    Pole jest wymagane.
+                </span>
+            </div>
+            <div class="field">
+                <!-- <label for="back">Tył fiszki:</label> -->
+                <input type="text" id="back" formControlName="back" placeholder="Tył fiszki">
+                <span *ngIf="addFlashcardForm.controls['back'].errors?.['required'] && (addFlashcardForm.controls['back'].dirty || addFlashcardForm.controls['back'].touched)">
+                    Pole jest wymagane.
+                </span>
+            </div>
+        </div>
+        <div id="actions">
+            <button type="submit" class="btn btn-custom" [disabled]="!addFlashcardForm.valid">Dodaj fiszkę</button>
+            <button type="button" class="cancel btn" (click)="closeAddModal()">Anuluj</button>
+        </div>
+    </form>
+</div>

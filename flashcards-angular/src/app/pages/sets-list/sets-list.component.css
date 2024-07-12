@@ -1,0 +1,78 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 120px;
+  padding-bottom: 100px;
+}
+
+.filter-container {
+  justify-content: center;
+  position: relative;
+}
+
+.filter-container input {
+  padding: 8px 15px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.5s;
+  text-align: center;
+}
+
+.filter-container input:focus,
+.filter-container:focus-within i {
+  color: #333; /* Zmienia kolor ikony na taki sam jak kolor obramowania inputa przy fokusie */
+  border-color: #333; /* Zmienia kolor obramowania inputa */
+}
+
+.filter-container i {
+  position: absolute;
+  top: 50%; /* Centruj ikonę wertykalnie */
+  left: 10px; /* Ustawienie wewnątrz inputa */
+  transform: translateY(-50%); /* Centrowanie */
+  color: #ccc; /* Domyślny kolor ikony */
+  transition: color 0.5s; /* Dodaj animację zmiany koloru */
+  pointer-events: none; /* Zapobiega interakcji z ikoną (kliknięcie przejdzie do inputa) */
+
+}
+
+
+.filter-container input:focus {
+  border-color: #333;
+  outline: none;
+}
+
+.sets-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-button {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  opacity: 0.8;
+}
+
+i {
+  font-size: 12px;
+}

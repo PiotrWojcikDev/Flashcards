@@ -1,0 +1,16 @@
+<div class="set-container">
+    <div class="set-header">
+        <h2>{{ setObj.setName }}</h2>
+    </div>
+    <div class="set-details">
+        <p>Data utworzenia: {{ setObj.createdAt | date:'HH:mm dd.MM.yyyy'}}</p>
+        <p>Data modyfikacji: {{ (setObj.updatedAt | date:'HH:mm dd.MM.yyyy' ) || '-' }}</p>
+        <p>Liczba fiszek: {{ setObj.flashcardCount }}</p>
+    </div>
+    <div class="set-actions">
+        <button (click)="navigateToSetDetails(setObj.setId)">Zobacz</button>
+        <button (click)="editSet(setObj.setId)">Edytuj</button>
+        <button (click)="deleteSet(setObj)">Usuń</button>
+    </div>
+</div>
+<app-delete-set-confirmation-modal *ngIf="setService.showDeleteSetConfirmationModal === true" [setObj]="setObj" (onDelete)="onDelete.emit()" (onDeleteCancel)="onDeleteCancel.emit()"></app-delete-set-confirmation-modal>

@@ -1,0 +1,28 @@
+.page-not-found-container {
+    min-height: calc(100vh - 120px); /* Odejmowanie wysokości navbara i footera */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .page-not-found-container h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5em;
+  }
+  
+  .page-not-found-container p {
+    font-size: 1.5rem;
+    margin-bottom: 1em;
+  }
+  
+  .page-not-found-container a {
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  

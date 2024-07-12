@@ -1,0 +1,26 @@
+<div class="main">
+  <h2>Fiszki w zbiorze <i>{{ set.setName }}</i>  ({{ set.flashcardCount}})</h2>
+  <div class="filter-container">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" placeholder="Filtruj fiszki" [(ngModel)]="filterText" (input)="filterFlashcards()" />
+  </div>
+  <div class="flashcards-list">
+    <div class="actions">
+      <button class="learn-button" (click)="openLearnMode()">
+        Tryb nauki
+        <i class="fa-solid fa-graduation-cap"></i>
+      </button>
+  
+      <button class="add-button" (click)="addFlashcard()">
+        Dodaj fiszki
+        <i class="fa-solid fa-plus fa-sm"></i>
+      </button>
+    </div>
+    
+    
+    <div *ngFor="let flashcard of filteredFlashcards">
+      <app-single-flashcard [flashcardObj]="flashcard" (onDelete)="refreshList()" (onDeleteCancel)="refreshList()"></app-single-flashcard>
+    </div>
+  </div>
+</div>
+<app-add-flashcard-modal *ngIf="flashcardService.showAddFlashcardModal" (onAdd)="refreshList()"></app-add-flashcard-modal>

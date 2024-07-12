@@ -1,0 +1,94 @@
+.content {
+    width: 100%;
+    margin-top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 400px;
+}
+
+form div {
+    margin: 1%;
+}
+
+form input {
+    width: 100%; /* Zwiększ szerokość do pełnej dostępnej przestrzeni w kontenerze */
+    padding: 10px;
+    margin-bottom: 10px; /* Dodaj odstęp pomiędzy polami */
+    border: 1px solid #ccc; /* Subtelne obramowanie */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+    font-size: 16px; /* Czytelniejsza wielkość czcionki */
+    background: white; /* Tło białe dla konsekwencji */
+}
+
+.registration {
+    width: 100%;
+    max-width: 400px; /* Ogranicz maksymalną szerokość, aby formularz był bardziej czytelny */
+    padding: 20px;
+    background: white; /* Jasne tło dla lepszego kontrastu */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Wyraźniejszy cień */
+    margin: auto; /* Centrowanie w poziomie */
+}
+
+button {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #333; /* Ciemniejsze tło */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Zaokrąglone rogi */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Animacja zmiany tła */
+}
+
+button:hover {
+    background-color: #555; /* Ciemniejsze tło po najechaniu */
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+span {
+    font-size: 10px;
+    color: red;
+}
+
+.form-actions {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+a {
+    color: #555; /* Subtelniejszy kolor */
+    text-decoration: none; /* Usunięcie podkreślenia */
+    margin: 10px 0;
+}
+
+.a-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+

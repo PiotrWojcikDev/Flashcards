@@ -1,0 +1,128 @@
+.main-container {
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.container {
+    width: 70vw;
+    height: 70vh;
+    max-width: 200px;
+    max-height: 300px;
+    perspective: 800px;
+}
+
+.container:hover>.card {
+    cursor: pointer;
+    transform: rotateY(180deg);
+}
+
+.card {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transition: transform 1000ms;
+    transform-style: preserve-3d;
+}
+
+.front,
+.back {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+p {
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 10px;
+}
+
+.back {
+    background-color: #bababa;
+    transform: rotateY(180deg);
+    gap: 5rem;
+}
+
+.arrows {
+    margin-top: 1.5%;
+    display: flex;
+    justify-content: space-between;
+    width: 10%;
+}
+
+i {
+    font-size: 20px;
+}
+
+.response {
+    margin-top: 1.5%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.results {
+    margin-top: 1.5%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 5%;
+}
+
+.correct,
+.incorrect {
+    display: flex;
+    justify-content: space-around;
+}
+
+.correct i {
+    color: green;
+}
+
+.incorrect i {
+    color: red;
+}
+
+
+button {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.know-button,
+.unknown-button {
+    font-size: 1rem;
+    display: block;
+    padding: 5px 15px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.response button:nth-child(1) {
+    background-color: #333;
+}
+
+.response button:nth-child(2) {
+    background-color: #f74c5e;
+}
+
+button:hover {
+    opacity: 0.8;
+}

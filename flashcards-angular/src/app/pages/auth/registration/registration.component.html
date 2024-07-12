@@ -1,0 +1,63 @@
+<div class="content">
+    <div class="registration">
+        <h2 class="">Rejestracja</h2>
+    
+    <form [formGroup]="registrationForm">
+
+        <div class="field">
+            <input type="text" formControlName="firstName" class="form-control" placeholder="Imię">
+            <span *ngIf="registrationForm.controls['firstName'].errors?.['required'] && (registrationForm.controls['firstName'].dirty || registrationForm.controls['firstName'].touched)" class="text-danger" >
+                *Imię jest wymagane.
+            </span>     
+        </div>
+
+        <div class="field">
+            <input type="text" formControlName="lastName" class="form-control" placeholder="Nazwisko">
+            <span *ngIf="registrationForm.controls['lastName'].errors?.['required'] && (registrationForm.controls['lastName'].dirty || registrationForm.controls['lastName'].touched)" class="text-danger" >
+                *Nazwisko jest wymagane.
+            </span>    
+        </div>
+
+        
+        <div class="field">
+            <input type="text" formControlName="email" class="form-control" placeholder="Email">
+            <span *ngIf="registrationForm.controls['email'].errors?.['required'] && (registrationForm.controls['email'].dirty || registrationForm.controls['email'].touched)" class="text-danger" >
+                *Email jest wymagany.
+            </span>    
+            <span *ngIf="registrationForm.controls['email'].errors?.['email']  && registrationForm.controls['email'].touched" class="text-danger">
+                *Email jest niepoprawny.
+            </span>  
+        </div>
+        <div class="field">
+            <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Telefon">
+            <span *ngIf="registrationForm.controls['phoneNumber'].errors?.['required'] && (registrationForm.controls['phoneNumber'].dirty || registrationForm.controls['phoneNumber'].touched)" class="text-danger">
+                *Numer telefonu jest wymagany.
+            </span>    
+            <span *ngIf="registrationForm.controls['phoneNumber'].errors?.['pattern']  && registrationForm.controls['phoneNumber'].touched" class="text-danger">
+                *Numer telefonu jest niepoprawny.
+            </span>  
+        </div>
+
+        <div class="field">
+            <input type="password" formControlName="password" class="form-control" placeholder="Hasło">
+            <span *ngIf="registrationForm.controls['password'].errors?.['required'] && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)" class="text-danger" >
+                *Hasło jest wymagane.
+            </span>    
+        </div>
+        <div class="field">
+            <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Potwierdź hasło">
+            <span *ngIf="registrationForm.controls['confirmPassword'].errors?.['required'] && (registrationForm.controls['confirmPassword'].dirty || registrationForm.controls['confirmPassword'].touched)" class="text-danger" >
+                *Potwierdzenie hasła jest wymagane.
+            </span>    
+        </div>
+        
+        <div class="form-actions">
+            <button (click)="register()" [disabled]="!registrationForm.valid" type="button" class="btn btn-custom">Zarejestruj się</button>
+            <div class="a-container">
+               Masz już konto?<a routerLink="/login" class="text-decoration-none" href="">Zaloguj się</a>
+            </div>
+        </div>
+    </form>
+    </div>
+    
+</div>   

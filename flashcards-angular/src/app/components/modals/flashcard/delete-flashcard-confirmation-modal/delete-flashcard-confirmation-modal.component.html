@@ -1,0 +1,11 @@
+<div id="overlay" (click)="deleteCancelAction()"></div>
+<div id="container">
+    <div id="header">Usuwanie fiszki</div>
+    <div id="content">
+        Czy na pewno chcesz usunąć fiszkę <i>{{ flashcardObj.front }}</i>?
+    </div>
+    <div id="actions">
+        <button (click)="deleteFlashcard()" class="btn btn-custom">Usuń</button>
+        <button (click)="deleteCancelAction()" class="cancel btn">Anuluj</button>
+    </div>
+</div>

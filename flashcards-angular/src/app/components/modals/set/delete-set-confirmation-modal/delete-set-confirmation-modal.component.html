@@ -1,0 +1,12 @@
+<div id="overlay" (click)="deleteCancelAction()"></div>
+<div id="container">
+    <div id="header">Usuwanie zbioru</div>
+    <div id="content">
+        Czy na pewno chcesz usunąć zbiór <i>{{ setObj.setName }}</i>?
+    </div>
+    <div id="actions">
+        <button (click)="deleteSet()" class="btn btn-custom">Usuń</button>
+
+        <button (click)="deleteCancelAction()" class="cancel btn">Anuluj</button>
+    </div>
+</div>

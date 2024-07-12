@@ -1,0 +1,18 @@
+<div id="overlay" (click)="closeAddModal()"></div>
+<div id="container">
+    <div id="header">Dodawanie zbioru</div>
+    <form [formGroup]="addSetForm" (ngSubmit)="addSet()">
+        <div id="content">
+            <div class="field">
+                <input type="text" id="setName" formControlName="setName" placeholder="Nazwa zbioru">
+                <span *ngIf="addSetForm.controls['setName'].errors?.['required'] && (addSetForm.controls['setName'].dirty || addSetForm.controls['setName'].touched)">
+                    Pole jest wymagane.
+                </span>
+            </div>
+        </div>
+        <div id="actions">
+            <button type="submit" class="btn btn-custom" [disabled]="!addSetForm.valid">Dodaj zbiór</button>
+            <button type="button" class="cancel btn" (click)="closeAddModal()">Anuluj</button>
+        </div>
+    </form>
+</div>

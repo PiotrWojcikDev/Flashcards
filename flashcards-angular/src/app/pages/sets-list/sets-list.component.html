@@ -1,0 +1,20 @@
+<div class="main">
+    <h2>Dostępne zbiory fiszek</h2>
+
+    <div class="filter-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" 
+        placeholder="Filtruj zbiory" 
+        [(ngModel)]="filterText" (input)="filterSets()" />
+    </div>
+    <div class="sets-list">
+        <button class="add-button" (click)="addSet()">
+            Dodaj zbiór
+            <i class="fa-solid fa-plus fa-sm"></i>
+        </button>
+        <div *ngFor="let set of filteredSets">
+            <app-single-set [setObj]="set" (onDelete)="refreshList()"></app-single-set>
+        </div>
+    </div>
+</div>
+<app-add-set-modal *ngIf="setService.showAddSetModal" (onAdd)="refreshList()"></app-add-set-modal>
