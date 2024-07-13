@@ -35,7 +35,11 @@ public class AuthController {
         newUser.setPassword(userDto.getPassword()); // Bez szyfrowania
         newUser.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
         userRepository.save(newUser);
-        return ResponseEntity.ok("User registered successfully!");
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "User registered successfully!");
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
@@ -49,7 +53,7 @@ public class AuthController {
 
         Map<String, Object> response = new HashMap<>();
         response.put("message", "User logged in successfully!");
-        response.put("userId", user.getUserId()); // Zakładamy, że getter dla ID użytkownika to getUserId()
+        response.put("userId", user.getUserId());
 
         return ResponseEntity.ok(response);
     }

@@ -37,12 +37,9 @@ export class LoginComponent implements OnInit{
         const userId = localStorage.getItem('userId');
         if (userId !== null && userId !== undefined) 
           this.router.navigate(['sets']);
-        console.log("ok")
-
       },
       error: (err) => {
         console.log(err);
-        console.log("nie ok")
         this.loginForm.reset();
         this.router.navigate(['login']);
     }});

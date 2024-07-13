@@ -31,23 +31,18 @@ public class SetServiceImpl implements SetService {
         this.userRepository = userRepository;
     }
 
-
-
     @Override
     @Transactional
     public Set createSet(SetDto setDto) {
         Set set = new Set();
         set.setSetName(setDto.getSetName());
 
-        // Pobierz użytkownika na podstawie userId
         User user = userRepository.findById(setDto.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + setDto.getUserId()));
 
-        // Przypisz użytkownika do zestawu
         set.setUser(user);
         set.setCreatedAt(new Date());
         set.setFlashcardCount(0);
-        // Mapowanie innych właściwości, jeśli istnieją
         return setRepository.save(set);
     }
 
@@ -83,7 +78,6 @@ public class SetServiceImpl implements SetService {
         existingSet.setSetName(setDto.getSetName());
         Set updatedSet = setRepository.save(existingSet);
 
-        // Ręczne przekształcenie Set na SetDto
         SetDto updatedSetDto = new SetDto();
         updatedSetDto.setSetId(updatedSet.getSetId());
         updatedSetDto.setSetName(updatedSet.getSetName());

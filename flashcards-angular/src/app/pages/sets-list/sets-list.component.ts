@@ -55,6 +55,7 @@ export class SetsListComponent implements OnInit{
   }
 
   refreshList() {
-    this.getAllSetsByUserId("1");  // Załóżmy, że "1" to ID użytkownika
+    const userId = localStorage.getItem('userId') || "";
+    this.getAllSetsByUserId(userId);  // Załóżmy, że "1" to ID użytkownika
   }
 }

@@ -2,18 +2,21 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
+  providers: [AuthService]
 })
 export class RegistrationComponent {
   registrationForm!: FormGroup;
 
   constructor(
+    private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder,
   ) { }
@@ -37,7 +40,16 @@ export class RegistrationComponent {
   }
 
   register() {
-    console.log("register fun()");
-    console.log(this.registrationForm.value);
+    
+    this.authService.registerService(this.registrationForm.value)
+    .subscribe({
+      next: (res) => {
+        this.router.navigate(['login']);
+      },
+      error: (err) => {
+        console.log(err);
+        this.registrationForm.reset();
+      }
+    });
   }
 }
