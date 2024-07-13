@@ -1,0 +1,24 @@
+<div id="overlay" (click)="closeUpdateModal()"></div>
+<div id="container">
+    <div id="header">Edytowanie fiszki</div>
+    <form [formGroup]="updateFlashcardForm" (ngSubmit)="updateFlashcard()">
+        <div id="content">
+            <div class="field">
+                <input type="text" id="front" formControlName="front" placeholder="{{flashcardObj.front}}">
+                <span *ngIf="updateFlashcardForm.controls['front'].errors?.['required'] && (updateFlashcardForm.controls['front'].dirty || updateFlashcardForm.controls['front'].touched)">
+                    Pole jest wymagane.
+                </span>
+            </div>
+            <div class="field">
+                <input type="text" id="back" formControlName="back" placeholder="{{flashcardObj.back}}">
+                <span *ngIf="updateFlashcardForm.controls['back'].errors?.['required'] && (updateFlashcardForm.controls['back'].dirty || updateFlashcardForm.controls['back'].touched)">
+                    Pole jest wymagane.
+                </span>
+            </div>
+        </div>
+        <div id="actions">
+            <button type="submit" class="btn btn-custom" [disabled]="!updateFlashcardForm.valid">Zatwierdź</button>
+            <button type="button" class="cancel btn" (click)="closeUpdateModal()">Anuluj</button>
+        </div>
+    </form>
+</div>

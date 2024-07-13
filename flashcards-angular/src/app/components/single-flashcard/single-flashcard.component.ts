@@ -4,11 +4,14 @@ import { Router } from '@angular/router';
 import { DeleteFlashcardConfirmationModalComponent } from '../modals/flashcard/delete-flashcard-confirmation-modal/delete-flashcard-confirmation-modal.component';
 import { FlashcardService } from 'src/app/services/flashcard.service';
 import { AddFlashcardModalComponent } from '../modals/flashcard/add-flashcard-modal/add-flashcard-modal.component';
+import { UpdateFlashcardModalComponent } from '../modals/flashcard/update-flashcard-modal/update-flashcard-modal.component';
 
 @Component({
   selector: 'app-single-flashcard',
   standalone: true,
-  imports: [CommonModule, 
+  imports: [
+    CommonModule, 
+    UpdateFlashcardModalComponent,
     DeleteFlashcardConfirmationModalComponent],
   templateUrl: './single-flashcard.component.html',
   styleUrls: ['./single-flashcard.component.css'],
@@ -16,6 +19,7 @@ import { AddFlashcardModalComponent } from '../modals/flashcard/add-flashcard-mo
 })
 export class SingleFlashcardComponent {
   @Input() flashcardObj: any;
+  @Output() onUpdate = new EventEmitter<void>(); 
   @Output() onDelete = new EventEmitter<void>(); 
   @Output() onDeleteCancel = new EventEmitter<void>(); 
 
@@ -24,17 +28,15 @@ export class SingleFlashcardComponent {
     private router: Router) {}
 
 
-  editFlashcard(flashcardId: number) {
-    // logika do edycji fiszki
+  updateFlashcard(flashcardId: number) {
+    this.flashcardService.showUpdateFlashcardModal = true;
     console.log(`Editing flashcard with ID: ${flashcardId}`);
   }
 
   deleteFlashcard(flashcardId: number) {
-    console.log("Delete set" + JSON.stringify(this.flashcardObj));
     this.flashcardService.showDeleteFlashcardConfirmationModal = true;
   }
   deleteCancelAction() {
-    console.log("Delete set" + JSON.stringify(this.flashcardObj));
     this.flashcardService.showDeleteFlashcardConfirmationModal = false;
   }
 }

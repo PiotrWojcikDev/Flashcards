@@ -19,7 +19,7 @@
     
     
     <div *ngFor="let flashcard of filteredFlashcards">
-      <app-single-flashcard [flashcardObj]="flashcard" (onDelete)="refreshList()" (onDeleteCancel)="refreshList()"></app-single-flashcard>
+      <app-single-flashcard [flashcardObj]="flashcard" (onUpdate)="refreshList()" (onDelete)="refreshList()" (onDeleteCancel)="refreshList()"></app-single-flashcard>
     </div>
   </div>
 </div>

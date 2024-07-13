@@ -5,8 +5,9 @@
         <p class="paragrapgh-margin">{{ flashcardObj.back }}</p>
     </div>
     <div class="flashcard-actions">
-        <button (click)="editFlashcard(flashcardObj.flashcardId)">Edytuj</button>
+        <button (click)="updateFlashcard(flashcardObj.flashcardId)">Edytuj</button>
         <button (click)="deleteFlashcard(flashcardObj.flashcardId)">Usuń</button>
     </div>
 </div>
+<app-update-flashcard-modal *ngIf="flashcardService.showUpdateFlashcardModal === true" [flashcardObj]="flashcardObj" (onUpdate)="onUpdate.emit()" ></app-update-flashcard-modal>
 <app-delete-flashcard-confirmation-modal *ngIf="flashcardService.showDeleteFlashcardConfirmationModal === true" [flashcardObj]="flashcardObj" (onDelete)="onDelete.emit()" (onDeleteCancel)="onDeleteCancel.emit()" ></app-delete-flashcard-confirmation-modal>

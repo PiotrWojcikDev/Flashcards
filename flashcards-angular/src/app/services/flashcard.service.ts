@@ -8,14 +8,22 @@ import { ApiPaths } from '../../api-paths';
 export class FlashcardService {
 
   showAddFlashcardModal = false;
+  showUpdateFlashcardModal = false;
   showDeleteFlashcardConfirmationModal = false;
   
   constructor(
     private http: HttpClient
   ) { }
 
+
+
   addFlashcard(flashcardObj: any) {
     return this.http.post<any>(`${ApiPaths.Flashcards}/addFlashcard`, flashcardObj);
+  }
+
+  updateFlashcard(flashcardObj: any) {
+    console.log(flashcardObj);
+    return this.http.put<any>(`${ApiPaths.Flashcards}/${flashcardObj.flashcardId}`, flashcardObj);
   }
 
   deleteFlashcard(flashcardId: string) {
