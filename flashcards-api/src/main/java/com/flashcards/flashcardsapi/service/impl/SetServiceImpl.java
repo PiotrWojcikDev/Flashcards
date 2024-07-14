@@ -104,12 +104,9 @@ public class SetServiceImpl implements SetService {
         dto.setCreatedAt(set.getCreatedAt());
         dto.setUpdatedAt(set.getUpdatedAt());
         dto.setFlashcardCount(set.getFlashcardCount());
-        // Możesz dodać mapowanie flashcards, jeśli jest potrzebne
-        // dto.setFlashcards(set.getFlashcards().stream().map(this::convertToFlashcardDto).collect(Collectors.toList()));
         return dto;
     }
 
-    // Pomocnicza metoda do mapowania Flashcard na FlashcardDto
     private FlashcardDto convertToFlashcardDto(Flashcard flashcard) {
         FlashcardDto dto = new FlashcardDto();
         dto.setFlashcardId(flashcard.getFlashcardId());

@@ -26,7 +26,8 @@ export class AddSetModalComponent {
   }
 
   addSet() {
-    this.setService.addSet(this.addSetForm.value).subscribe({
+    this.setService.addSet(this.addSetForm.value)
+    .subscribe({
       next: (res) => {
         this.setService.showAddSetModal = false;
         this.onAdd.emit();

@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class SetService {
 
   showAddSetModal = false;
+  showUpdateSetModal = false;
   showDeleteSetConfirmationModal = false;
   showLearningFinishedModal = false;
 
@@ -31,8 +32,8 @@ export class SetService {
     return this.http.get<any>(`${ApiPaths.Sets}/${setId}/flashcards`);
   }
 
-  updateSet(userId: string, setObj: any) {
-    return this.http.put<any>(`${ApiPaths.Sets}/user/${userId}`, setObj);
+  updateSet(setObj: any) {
+    return this.http.put<any>(`${ApiPaths.Sets}/${setObj.setId}`, setObj);
   }
 
   deleteSet(setId: string) {

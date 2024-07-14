@@ -1,0 +1,18 @@
+<div id="overlay" (click)="closeAddModal()"></div>
+<div id="container">
+    <div id="header">Edycja zbioru</div>
+    <form [formGroup]="updateSetForm" (ngSubmit)="updateSet()">
+        <div id="content">
+            <div class="field">
+                <input type="text" id="setName" formControlName="setName" placeholder="{{setObj.setName}}">
+                <span *ngIf="updateSetForm.controls['setName'].errors?.['required'] && (updateSetForm.controls['setName'].dirty || updateSetForm.controls['setName'].touched)">
+                    Pole jest wymagane.
+                </span>
+            </div>
+        </div>
+        <div id="actions">
+            <button type="submit" class="btn btn-custom" [disabled]="!updateSetForm.valid">Zatwierdź</button>
+            <button type="button" class="cancel btn" (click)="closeAddModal()">Anuluj</button>
+        </div>
+    </form>
+</div>

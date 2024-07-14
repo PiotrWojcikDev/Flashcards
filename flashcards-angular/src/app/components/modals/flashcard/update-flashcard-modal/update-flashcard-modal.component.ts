@@ -15,6 +15,7 @@ export class UpdateFlashcardModalComponent {
   @Input() flashcardObj: any;
   @Output() onUpdate = new EventEmitter(); 
   updateFlashcardForm!: FormGroup;
+  
   constructor(
     public flashcardService: FlashcardService,
     private formBuilder: FormBuilder,

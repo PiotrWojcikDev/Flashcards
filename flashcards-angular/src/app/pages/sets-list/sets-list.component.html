@@ -13,7 +13,7 @@
             <i class="fa-solid fa-plus fa-sm"></i>
         </button>
         <div *ngFor="let set of filteredSets">
-            <app-single-set [setObj]="set" (onDelete)="refreshList()"></app-single-set>
+            <app-single-set [setObj]="set" (onUpdate)="refreshList()" (onDelete)="refreshList()"></app-single-set>
         </div>
     </div>
 </div>
