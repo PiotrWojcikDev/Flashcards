@@ -17,7 +17,7 @@
             </div>
         </div>
         <div id="actions">
-            <button type="submit" class="btn btn-custom" [disabled]="!updateFlashcardForm.valid">Zatwierdź</button>
+            <button type="submit" class="btn btn-custom" [disabled]="updateFlashcardForm.invalid">Zatwierdź</button>
             <button type="button" class="cancel btn" (click)="closeUpdateModal()">Anuluj</button>
         </div>
     </form>
