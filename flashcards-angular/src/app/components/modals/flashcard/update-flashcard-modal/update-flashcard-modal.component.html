@@ -5,14 +5,14 @@
         <div id="content">
             <div class="field">
                 <input type="text" id="front" formControlName="front" placeholder="{{flashcardObj.front}}">
-                <span *ngIf="updateFlashcardForm.controls['front'].errors?.['required'] && (updateFlashcardForm.controls['front'].dirty || updateFlashcardForm.controls['front'].touched)">
-                    Pole jest wymagane.
+                <span *ngIf="updateFlashcardForm.controls['front'].errors?.['required'] && (updateFlashcardForm.controls['front'].dirty || updateFlashcardForm.controls['front'].touched)" class="form-error">
+                    *Pole jest wymagane.
                 </span>
             </div>
             <div class="field">
                 <input type="text" id="back" formControlName="back" placeholder="{{flashcardObj.back}}">
-                <span *ngIf="updateFlashcardForm.controls['back'].errors?.['required'] && (updateFlashcardForm.controls['back'].dirty || updateFlashcardForm.controls['back'].touched)">
-                    Pole jest wymagane.
+                <span *ngIf="updateFlashcardForm.controls['back'].errors?.['required'] && (updateFlashcardForm.controls['back'].dirty || updateFlashcardForm.controls['back'].touched)" class="form-error">
+                    *Pole jest wymagane.
                 </span>
             </div>
         </div>

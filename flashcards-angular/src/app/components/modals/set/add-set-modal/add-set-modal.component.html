@@ -5,8 +5,8 @@
         <div id="content">
             <div class="field">
                 <input type="text" id="setName" formControlName="setName" placeholder="Nazwa zbioru">
-                <span *ngIf="addSetForm.controls['setName'].errors?.['required'] && (addSetForm.controls['setName'].dirty || addSetForm.controls['setName'].touched)">
-                    Pole jest wymagane.
+                <span *ngIf="addSetForm.controls['setName'].errors?.['required'] && (addSetForm.controls['setName'].dirty || addSetForm.controls['setName'].touched)" class="form-error">
+                    *Pole jest wymagane.
                 </span>
             </div>
         </div>

@@ -104,10 +104,6 @@ input, select {
     text-align: center;
 }
 
-span {
-    font-size: 16px;
-}
-
 select,
 select option {
   color: #000000;

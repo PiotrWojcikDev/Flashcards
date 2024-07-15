@@ -71,11 +71,6 @@ button:disabled {
     flex-direction: column;
 }
 
-span {
-    font-size: 10px;
-    color: red;
-}
-
 .form-actions {
     width: 60%;
     display: flex;
