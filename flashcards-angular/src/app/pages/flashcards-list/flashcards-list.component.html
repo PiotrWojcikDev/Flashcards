@@ -6,7 +6,7 @@
   </div>
   <div class="flashcards-list">
     <div class="actions">
-      <button class="learn-button" (click)="openLearnMode()">
+      <button class="learn-button" (click)="openLearnMode()" [disabled]="set.flashcardCount === 0">
         Tryb nauki
         <i class="fa-solid fa-graduation-cap"></i>
       </button>
