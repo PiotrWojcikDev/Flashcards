@@ -1,1 +1,13 @@
-<p>home works!</p>
+<app-navbar></app-navbar>
+<div class="main">
+    <h1><i>Witaj w aplikacji FlashLearn!</i></h1>
+    <p>
+        Witamy w naszej aplikacji do nauki języków obcych (i nie tylko) za pomocą fiszek!
+        Aplikacja ta została stworzona, aby pomóc Ci w skutecznym przyswajaniu 
+        nowego słownictwa, pojęć oraz rozwijaniu umiejętności zapamiętywania. Dzięki niej możesz 
+        dodawać nowe fiszki, edytować istniejące, a także usuwać te, które nie są Ci już 
+        potrzebne. 
+        Zapraszamy do korzystania z naszej aplikacji i życzymy owocnej nauki języków obcych!
+    </p>
+    <button *ngIf="isUserLoggedIn" (click)="goToSets()">Do zbiorów!</button>
+</div>
