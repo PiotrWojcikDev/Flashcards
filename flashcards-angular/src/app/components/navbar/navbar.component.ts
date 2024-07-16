@@ -1,29 +1,31 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  providers: [AuthService]
 })
-export class NavbarComponent {
-  navbarOpen = false;
-
+export class NavbarComponent implements OnInit {
+  isUserLoggedIn: boolean = false;
 
   constructor(
+    private authService: AuthService,
     private router: Router
-  ) { }
+  ) {}
 
-
-  toggleNavbar() {
-    this.navbarOpen = !this.navbarOpen;
+  ngOnInit(): void {
+    this.isUserLoggedIn = this.authService.isLoggedIn();
+    console.log(this.isUserLoggedIn)
   }
 
   logout() {
-    localStorage.removeItem('userId');
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 

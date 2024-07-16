@@ -3,11 +3,16 @@ import { CommonModule } from '@angular/common';
 import { SetService } from 'src/app/services/set.service';
 import { LearningFinishedModalComponent } from 'src/app/components/modals/learn/learning-finished-modal/learning-finished-modal.component';
 import { ActivatedRoute } from '@angular/router';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-learn',
   standalone: true,
-  imports: [CommonModule, LearningFinishedModalComponent],
+  imports: [
+    CommonModule, 
+    NavbarComponent,
+    LearningFinishedModalComponent
+  ],
   templateUrl: './learn.component.html',
   styleUrls: ['./learn.component.css'],
   providers: [SetService]

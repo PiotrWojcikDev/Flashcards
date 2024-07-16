@@ -6,11 +6,18 @@ import { SingleFlashcardComponent } from 'src/app/components/single-flashcard/si
 import { FormsModule } from '@angular/forms';
 import { AddFlashcardModalComponent } from 'src/app/components/modals/flashcard/add-flashcard-modal/add-flashcard-modal.component';
 import { FlashcardService } from 'src/app/services/flashcard.service';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-flashcards-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, SingleFlashcardComponent, AddFlashcardModalComponent],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    NavbarComponent,
+    SingleFlashcardComponent, 
+    AddFlashcardModalComponent
+  ],
   templateUrl: './flashcards-list.component.html',
   styleUrls: ['./flashcards-list.component.css'],
   providers: [SetService, FlashcardService]

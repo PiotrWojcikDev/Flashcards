@@ -25,4 +25,8 @@
     text-decoration: none;
     border-radius: 5px;
   }
+
+  .page-not-found-container a:hover {
+    opacity: 0.8;
+  }
   
