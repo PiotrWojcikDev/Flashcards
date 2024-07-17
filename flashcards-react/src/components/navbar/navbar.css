@@ -63,15 +63,3 @@
     background-color: #333; /* Tło dla rozwijanego menu */
 }
 
-@media (max-width: 768px) {
-    .navbar-toggler {
-        display: block;
-    }
-
-    .navbar-links {
-        flex-direction: column;
-        width: 100%;
-        display: none;
-        padding: 0; /* Usuwa domyślne paddingi dla kolumny */
-    }
-}

@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import './registration.css'; // Import your styles
+import styles from './registration.module.css';
+import Navbar from '../../../components/navbar/navbar';
 
 interface FormErrors {
     firstName: string;
@@ -81,7 +82,6 @@ const RegistrationComponent = () => {
         e.preventDefault();
         if (validateForm()) {
             console.log('Registration data:', formData);
-            // Handle registration logic here, possibly involving an API call
         }
     };
 
@@ -90,44 +90,48 @@ const RegistrationComponent = () => {
     };
 
     return (
-        <div className="content">
-            <div className="registration">
-                <h2>Rejestracja</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="field">
-                        <input type="text" name="firstName" className="form-control" placeholder="Imię" value={formData.firstName} onChange={handleChange} />
-                        {errors.firstName && <span className="text-danger">{errors.firstName}</span>}
-                    </div>
-                    <div className="field">
-                        <input type="text" name="lastName" className="form-control" placeholder="Nazwisko" value={formData.lastName} onChange={handleChange} />
-                        {errors.lastName && <span className="text-danger">{errors.lastName}</span>}
-                    </div>
-                    <div className="field">
-                        <input type="text" name="email" className="form-control" placeholder="Email" value={formData.email} onChange={handleChange} />
-                        {errors.email && <span className="text-danger">{errors.email}</span>}
-                    </div>
-                    <div className="field">
-                        <input type="text" name="phoneNumber" className="form-control" placeholder="Telefon" value={formData.phoneNumber} onChange={handleChange} />
-                        {errors.phoneNumber && <span className="text-danger">{errors.phoneNumber}</span>}
-                    </div>
-                    <div className="field">
-                        <input type="password" name="password" className="form-control" placeholder="Hasło" value={formData.password} onChange={handleChange} />
-                        {errors.password && <span className="text-danger">{errors.password}</span>}
-                    </div>
-                    <div className="field">
-                        <input type="password" name="confirmPassword" className="form-control" placeholder="Potwierdź hasło" value={formData.confirmPassword} onChange={handleChange} />
-                        {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
-                    </div>
-                    <div className="form-actions">
-                        <button type="submit" className="btn btn-custom">Zarejestruj się</button>
-                        <div className="a-container">
-                            <p>Masz już konto?</p>
-                            <Link to="/login" className="register-link">Zaloguj się</Link>
+        <>
+            <Navbar />
+            <div className={styles.content}>
+                <div className={styles.registration}>
+                    <h2>Rejestracja</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className={styles.field}>
+                            <input type="text" name="firstName" placeholder="Imię" value={formData.firstName} onChange={handleChange} />
+                            {errors.firstName && <span>{errors.firstName}</span>}
                         </div>
-                    </div>
-                </form>
+                        <div className={styles.field}>
+                            <input type="text" name="lastName" placeholder="Nazwisko" value={formData.lastName} onChange={handleChange} />
+                            {errors.lastName && <span>{errors.lastName}</span>}
+                        </div>
+                        <div className={styles.field}>
+                            <input type="text" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+                            {errors.email && <span>{errors.email}</span>}
+                        </div>
+                        <div className={styles.field}>
+                            <input type="text" name="phoneNumber" placeholder="Telefon" value={formData.phoneNumber} onChange={handleChange} />
+                            {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
+                        </div>
+                        <div className={styles.field}>
+                            <input type="password" name="password" placeholder="Hasło" value={formData.password} onChange={handleChange} />
+                            {errors.password && <span>{errors.password}</span>}
+                        </div>
+                        <div className={styles.field}>
+                            <input type="password" name="confirmPassword" placeholder="Potwierdź hasło" value={formData.confirmPassword} onChange={handleChange} />
+                            {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
+                        </div>
+                        <div className={styles.formActions}>
+                            <button type="submit">Zarejestruj się</button>
+                            <div className={styles.linkContainer}>
+                                <p>Masz już konto?</p>
+                                <Link to="/login">Zaloguj się</Link>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        </>
+
     );
 };
 
