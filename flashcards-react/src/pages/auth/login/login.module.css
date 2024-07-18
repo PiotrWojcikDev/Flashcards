@@ -1,4 +1,4 @@
-.content {
+.loginContent {
     width: 100%;
     margin-top: 15%;
     display: flex;
@@ -7,11 +7,11 @@
     flex-direction: column;
 }
 
-h2 {
+.loginContent h2 {
     text-align: center;
 }
 
-form {
+.loginContent form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,11 +19,11 @@ form {
     width: 400px;
 }
 
-form div {
+.loginContent form div {
     margin: 5px;
 }
 
-form input {
+.loginContent form input {
     width: 100%; 
     padding: 10px;
     margin-bottom: 10px; 
@@ -43,7 +43,7 @@ form input {
     margin: auto; 
 }
 
-button {
+.loginButton {
     width: 100%;
     padding: 10px 0;
     background-color: #333;
@@ -54,11 +54,11 @@ button {
     transition: background-color 0.3s; 
 }
 
-button:hover {
+.loginButton:hover {
     opacity: 0.8;   
 }
 
-button:disabled {
+.loginButton:disabled {
     opacity: 0.6;   
     cursor: not-allowed;
 }
@@ -71,7 +71,7 @@ button:disabled {
 }
 
 
-.formActions {
+.loginContent .formActions {
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -85,7 +85,7 @@ button:disabled {
     
 }
 
-a {
+.registerLink {
     color: #555; 
     text-decoration: none; 
     margin: 10px 0; 

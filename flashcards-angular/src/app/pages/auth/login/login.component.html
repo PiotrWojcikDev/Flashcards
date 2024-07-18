@@ -1,34 +1,34 @@
 <app-navbar></app-navbar>
 <div class="content">
     <div class="login">
-        <h2 class="">Logowanie</h2>
-    
-    <form [formGroup]="loginForm">
-        
-        <div class="field">
-            <input type="text" formControlName="email" class="form-control" placeholder="Email">
-            <span *ngIf="loginForm.controls['email'].errors?.['required'] && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" class="form-error" >
-                *Email jest wymagany.
-            </span>    
-            <span *ngIf="loginForm.controls['email'].errors?.['email']  && loginForm.controls['email'].touched" class="form-error">
-                *Email jest niepoprawny.
-            </span>  
-        </div>
-        <div class="field">
-            <input type="password" formControlName="password" class="form-control" placeholder="Hasło">
-            <span *ngIf="loginForm.controls['password'].errors?.['required'] && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="form-error">
-                *Hasło jest wymagane.
-            </span>    
-        </div>
-        
-        <div class="form-actions">
-            <button (click)="login()" [disabled]="loginForm.invalid" type="button" class="btn btn-custom">Zaloguj się</button>
-            <div class="a-container">
-                <p>Nie masz konta?</p>
-                <a routerLink="/register"  href="">Zarejestruj się</a>
+        <h2>Logowanie</h2>
+
+        <form [formGroup]="loginForm">
+
+            <div class="field">
+                <input type="text" formControlName="email" placeholder="Email">
+                <span *ngIf="loginForm.controls['email'].errors?.['required'] && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"class="form-error">
+                    *Email jest wymagany.
+                </span>
+                <span *ngIf="loginForm.controls['email'].errors?.['email']  && loginForm.controls['email'].touched" class="form-error">
+                    *Email jest niepoprawny.
+                </span>
             </div>
-        </div>
-    </form>
+            <div class="field">
+                <input type="password" formControlName="password" placeholder="Hasło">
+                <span *ngIf="loginForm.controls['password'].errors?.['required'] && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="form-error">
+                    *Hasło jest wymagane.
+                </span>
+            </div>
+
+            <div class="form-actions">
+                <button (click)="login()" [disabled]="loginForm.invalid" type="button" class="btn btn-custom">Zaloguj się</button>
+                <div class="a-container">
+                    <p>Nie masz konta?</p>
+                    <a routerLink="/register" href="">Zarejestruj się</a>
+                </div>
+            </div>
+        </form>
     </div>
-    
-</div>   
+
+</div>

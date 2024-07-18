@@ -20,7 +20,7 @@ const LoginComponent = () => {
     return (
         <>
             <Navbar />
-            <div className={styles.content}>
+            <div className={styles.loginContent}>
                 <div className={styles.login}>
                     <h2>Logowanie</h2>
                     <form onSubmit={handleSubmit}>
@@ -33,10 +33,10 @@ const LoginComponent = () => {
                             {errors.password && <span>{errors.password}</span>}
                         </div>
                         <div className={styles.formActions}>
-                            <button type="submit">Zaloguj się</button>
+                            <button type="submit" className={styles.loginButton}>Zaloguj się</button>
                             <div className={styles.linkContainer}>
                                 <p>Nie masz konta?</p>
-                                <Link to="/register">Zarejestruj się</Link>
+                                <Link to="/register" className={styles.registerLink}>Zarejestruj się</Link>
                             </div>
                         </div>
                     </form>

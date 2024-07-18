@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './sets-list.css'; 
+import styles from './sets-list.module.css'; 
 import SingleSetComponent from '../../components/single-set/single-set';
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/navbar/navbar';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 interface Set {
     setId: string;
@@ -20,7 +22,6 @@ const SetsListComponent = () => {
     }, []);
 
     const fetchSets = async () => {
-        // Załaduj rzeczywiste dane zamiast tych
         const mockSets: Set[] = [
             { setId: '1', setName: 'Ekonomia Podstawowa', createdAt: '2024-05-27T16:57:00Z', updatedAt: '2024-06-21T14:43:00Z', flashcardCount: 3 },
             { setId: '2', setName: 'Filologia angielska', createdAt: '2024-06-18T16:14:00Z', updatedAt: '', flashcardCount: 0 },
@@ -35,16 +36,26 @@ const SetsListComponent = () => {
     };
 
     return (
-        <div className="main">
-            <h2>Dostępne zbiory fiszek</h2>
-            <div className="filter-container">
-                <input type="text" placeholder="Filtruj zbiory" value={filterText} onChange={handleFilterChange} />
+        <>
+            <Navbar/>
+            <div className={styles.setsListContent}>
+                <h2>Dostępne zbiory fiszek</h2>
+                <div className={styles.filterContainer}>
+                    <i className="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Filtruj zbiory" value={filterText} onChange={handleFilterChange} />
+                </div>
+                <div className={styles.setsList}>
+                    <button className={styles.addButton}>
+                        Dodaj zbiór&nbsp;
+                        <i className="fa-solid fa-plus fa-sm"></i>
+                        </button>
+                    {filteredSets.map(set => (
+                        <SingleSetComponent key={set.setId} setObj={set} onDelete={() => console.log('Delete set', set.setId)} />
+                    ))}
+                </div>
             </div>
-            <button className="add-button"><Link to="/add-set">Dodaj zbiór +</Link></button>
-            {filteredSets.map(set => (
-                <SingleSetComponent key={set.setId} setObj={set} onDelete={() => console.log('Delete set', set.setId)} />
-            ))}
-        </div>
+        </>
+        
     );
 };
 

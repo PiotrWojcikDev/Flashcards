@@ -1,4 +1,4 @@
-.set-container {
+.setContainer {
     width: 25vw;
     display: flex;
     flex-direction: column;
@@ -11,19 +11,26 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.set-header h2 {
+.setHeader h2 {
     font-size: 24px;
     color: #333;
     text-align: center;
     padding-bottom: 5%;
 }
 
-.set-details p {
+.setHeader span {
+    font-size: 14px;
+    color: #666;
+    float: right;
+    margin-top: 4px;
+}
+
+.setDetails p {
     font-size: 20px;
     color: #444;
 }
 
-.set-actions {
+.setActions {
     display: flex;
     justify-content: space-evenly;
     gap: 10px;
@@ -32,7 +39,7 @@
     overflow: auto;
 }
 
-button {
+.setContainer button {
     flex: 1;
     padding: 10px 15px;
     border-radius: 5px;
@@ -41,20 +48,21 @@ button {
     font-weight: bold;
     color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      
 }
 
-button:hover {
+.setContainer button:hover {
     opacity: 0.8;
 }
 
-button:nth-child(1) {
+.setContainer button:nth-child(1) {
     background-color: #696967;
 }
 
-button:nth-child(2) {
+.setContainer button:nth-child(2) {
     background-color: #adadad;
 }
 
-button:nth-child(3) {
+.setContainer button:nth-child(3) {
     background-color: #f74c5e;
 }

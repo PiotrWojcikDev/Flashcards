@@ -1,4 +1,4 @@
-.content {
+.registrationContent {
     width: 100%;
     margin-top: 10%;
     display: flex;
@@ -7,11 +7,11 @@
     flex-direction: column;
 }
 
-h2 {
+.registrationContent h2 {
     text-align: center;
 }
 
-form {
+.registrationContent form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,11 +19,11 @@ form {
     width: 400px;
 }
 
-form div {
+.registrationContent form div {
     margin: 1%;
 }
 
-form input {
+.registrationContent form input {
     width: 100%; 
     padding: 10px;
     margin-bottom: 10px; 
@@ -44,7 +44,7 @@ form input {
     margin: auto; 
 }
 
-button {
+.registerButton {
     width: 100%;
     padding: 12px 0;
     background-color: #333; 
@@ -55,11 +55,11 @@ button {
     transition: background-color 0.3s; 
 }
 
-button:hover {
+.registerButton:hover {
     opacity: 0.8;   
 }
 
-button:disabled {
+.registerButton:disabled {
     opacity: 0.6;   
     cursor: not-allowed;
 }
@@ -78,7 +78,7 @@ button:disabled {
     justify-content: space-around;
 }
 
-a {
+.loginLink {
     color: #555; 
     text-decoration: none; 
     margin: 10px 0;
@@ -89,5 +89,4 @@ a {
     justify-content: space-around;
     align-items: center;
 }
-
 

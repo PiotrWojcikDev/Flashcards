@@ -92,7 +92,7 @@ const RegistrationComponent = () => {
     return (
         <>
             <Navbar />
-            <div className={styles.content}>
+            <div className={styles.registrationContent}>
                 <div className={styles.registration}>
                     <h2>Rejestracja</h2>
                     <form onSubmit={handleSubmit}>
@@ -121,10 +121,10 @@ const RegistrationComponent = () => {
                             {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
                         </div>
                         <div className={styles.formActions}>
-                            <button type="submit">Zarejestruj się</button>
+                            <button type="submit" className={styles.registerButton}>Zarejestruj się</button>
                             <div className={styles.linkContainer}>
                                 <p>Masz już konto?</p>
-                                <Link to="/login">Zaloguj się</Link>
+                                <Link to="/login" className={styles.loginLink}>Zaloguj się</Link>
                             </div>
                         </div>
                     </form>

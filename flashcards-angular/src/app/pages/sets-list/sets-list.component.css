@@ -25,18 +25,18 @@
 
 .filter-container input:focus,
 .filter-container:focus-within i {
-  color: #333; /* Zmienia kolor ikony na taki sam jak kolor obramowania inputa przy fokusie */
-  border-color: #333; /* Zmienia kolor obramowania inputa */
+  color: #333; 
+  border-color: #333; 
 }
 
 .filter-container i {
   position: absolute;
-  top: 50%; /* Centruj ikonę wertykalnie */
-  left: 10px; /* Ustawienie wewnątrz inputa */
-  transform: translateY(-50%); /* Centrowanie */
-  color: #ccc; /* Domyślny kolor ikony */
-  transition: color 0.5s; /* Dodaj animację zmiany koloru */
-  pointer-events: none; /* Zapobiega interakcji z ikoną (kliknięcie przejdzie do inputa) */
+  top: 50%; 
+  left: 10px; 
+  transform: translateY(-50%); 
+  color: #ccc; 
+  transition: color 0.5s; 
+  pointer-events: none; 
 
 }
 

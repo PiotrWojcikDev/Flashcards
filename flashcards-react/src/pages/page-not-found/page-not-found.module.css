@@ -1,5 +1,5 @@
-.page-not-found-container {
-    min-height: calc(100vh - 120px); /* Ajust height if you have a header or footer */
+.pageNotFoundContainer {
+    min-height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,21 +7,25 @@
     text-align: center;
 }
 
-.page-not-found-container h1 {
+.pageNotFoundContainer h1 {
     font-size: 4rem;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
 }
 
-.page-not-found-container p {
+.pageNotFoundContainer p {
     font-size: 1.5rem;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 }
 
-.page-not-found-container a {
+.mainPageLink {
     padding: 10px 20px;
     background-color: #f8f9fa;
     border: 1px solid #ccc;
     color: #333;
     text-decoration: none;
     border-radius: 5px;
+}
+
+.mainPageLink:hover {
+    opacity: 0.8;
 }
