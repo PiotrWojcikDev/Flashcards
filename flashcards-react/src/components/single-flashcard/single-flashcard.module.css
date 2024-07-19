@@ -1,4 +1,4 @@
-.flashcard-container {
+.flashcardContainer {
     width: 25vw;
     display: flex;
     flex-direction: column;
@@ -9,39 +9,39 @@
     background-color: #f8f8f8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
-  
-.flashcard-details {
+
+.flashcardContainer .flashcardDetails {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.flashcard-details p {
+.flashcardContainer .flashcardDetails p {
     font-size: 20px;
     color: #444;
     text-align: center;
     overflow: hidden;
 }
 
-.flashcard-details p:nth-child(2) {
+.flashcardContainer .flashcardDetails p:nth-child(2) {
     height: 2px;
     width: 80%;
     border-bottom: 2px solid black;
 }
 
-.paragraph-margin {
+.paragraphMargin {
     margin-bottom: 15px;
 }
 
-.flashcard-actions {
+.flashcardContainer .flashcardActions {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: right;
 }
 
-button {
+.flashcardContainer button {
     padding: 10px 15px;
     border-radius: 5px;
     border: none;
@@ -54,14 +54,14 @@ button {
       
 }
 
-button:hover {
+.flashcardContainer button:hover {
     opacity: 0.8;
 }
 
-button:nth-child(1) {
+.flashcardContainer button:nth-child(1) {
     background-color: #696967;
 }
 
-button:nth-child(2) {
+.flashcardContainer button:nth-child(2) {
     background-color: #f74c5e;
 }

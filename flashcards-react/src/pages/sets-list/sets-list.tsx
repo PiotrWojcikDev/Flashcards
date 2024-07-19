@@ -38,7 +38,7 @@ const SetsListComponent = () => {
     return (
         <>
             <Navbar/>
-            <div className={styles.setsListContent}>
+            <div className={styles.setsListContainer}>
                 <h2>Dostępne zbiory fiszek</h2>
                 <div className={styles.filterContainer}>
                     <i className="fa-solid fa-magnifying-glass"></i>

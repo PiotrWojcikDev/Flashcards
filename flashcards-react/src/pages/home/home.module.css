@@ -1,4 +1,4 @@
-.homeContent {
+.homeContainer {
     margin-top: 120px;
     min-height: 50vh;
     display: flex;
@@ -8,15 +8,14 @@
     padding: 0 30%;
 }
 
-
-.homeContent p {
+.homeContainer p {
     margin: 1rem 0;
     text-align: justify;
     text-align-last: center;
     font-size: 20px;
 }
 
-.homeContent button {
+.homeContainer button {
     padding: 14px 30px;
     font-size: 16px;
     background-color: #333; 
@@ -27,6 +26,6 @@
     transition: background-color 0.3s; 
 }
 
-.homeContent button:hover {
+.homeContainer button:hover {
     opacity: 0.8;   
 }

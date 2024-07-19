@@ -92,7 +92,7 @@ const RegistrationComponent = () => {
     return (
         <>
             <Navbar />
-            <div className={styles.registrationContent}>
+            <div className={styles.registrationContainer}>
                 <div className={styles.registration}>
                     <h2>Rejestracja</h2>
                     <form onSubmit={handleSubmit}>

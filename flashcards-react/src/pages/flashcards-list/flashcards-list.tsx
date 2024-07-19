@@ -1,48 +1,78 @@
-// components/FlashcardsList.tsx
-import React, { useState } from 'react';
-import SingleFlashcard from '../../components/single-flashcard/single-flashcard';
-import './flashcards-list.css'; // Załóżmy, że masz już odpowiednie style
+import React, { useEffect, useState } from 'react';
+import styles from './flashcards-list.module.css'; 
+import Navbar from '../../components/navbar/navbar';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import SingleFlashcardComponent from '../../components/single-flashcard/single-flashcard';
 
-// Przykładowe typy dla propsów
 interface Flashcard {
-  id: string;
+  flashcardId: string;
   front: string;
   back: string;
 }
 
-interface FlashcardsListProps {
-  flashcards: Flashcard[];
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
-}
+const FlashcardsListComponent = () => {
+  const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
+  const [filterText, setFilterText] = useState<string>('');
 
-const FlashcardsList: React.FC<FlashcardsListProps> = ({ flashcards, onEdit, onDelete }) => {
-  const [filter, setFilter] = useState('');
+  useEffect(() => {
+      fetchFlashcards();
+  }, []);
+
+  const fetchFlashcards = async () => {
+      const mockFlashcards: Flashcard[] = [
+          { flashcardId: '1', front: 'czerwony', back: 'red' },
+          { flashcardId: '2', front: 'niebieski', back: 'blue' },
+          { flashcardId: '2', front: 'zielony', back: 'green' }
+      ];
+      setFlashcards(mockFlashcards);
+  };
 
   const filteredFlashcards = flashcards.filter(flashcard =>
-    flashcard.front.toLowerCase().includes(filter.toLowerCase()) ||
-    flashcard.back.toLowerCase().includes(filter.toLowerCase())
+      flashcard.front.toLowerCase().includes(filterText.toLowerCase())
   );
 
+  const updateFlashcard = (id: string) => {
+    console.log('Update flashcard', id);
+  };
+
+  const deleteFlashcard = (id: string) => {
+      console.log('Delete flashcard', id);
+  };
+
   return (
-    <div className="flashcards-list-container">
-      <input
-        type="text"
-        placeholder="Filtruj fiszki..."
-        value={filter}
-        onChange={e => setFilter(e.target.value)}
-        className="flashcard-filter-input"
-      />
-      {filteredFlashcards.map((flashcard) => (
-        <SingleFlashcard
-          key={flashcard.id}
-          flashcard={flashcard}
-          onEdit={onEdit}
-          onDelete={onDelete}
-        />
-      ))}
-    </div>
+    <>
+      <Navbar/>
+      <div className={styles.flashcardsListContainer}>
+        <h2>Fiszki w zbiorze <i>Nazwa zbioru</i>  (Liczba)</h2>
+
+        <div className={styles.filterContainer}>
+          <i className="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Filtruj fiszki" />
+        </div>
+
+        <div className={styles.flashcardsList}>
+          <div className={styles.actions}>
+            <button className={styles.learnButton}>
+              Tryb nauki&nbsp;
+              <i className="fa-solid fa-graduation-cap"></i>
+            </button>
+            <button className={styles.addButton}>
+              Dodaj fiszki&nbsp;
+              <i className="fa-solid fa-plus fa-sm"></i>
+            </button>
+          </div>
+          {filteredFlashcards.map(flashcard => (
+                    <SingleFlashcardComponent
+                        key={flashcard.flashcardId}
+                        flashcardObj={flashcard}
+                        onUpdate={() => updateFlashcard(flashcard.flashcardId)}
+                        onDelete={() => deleteFlashcard(flashcard.flashcardId)}
+                    />
+                ))}
+        </div>
+      </div>
+    </>
   );
 };
 
-export default FlashcardsList;
+export default FlashcardsListComponent;

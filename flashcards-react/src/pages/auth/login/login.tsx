@@ -20,7 +20,7 @@ const LoginComponent = () => {
     return (
         <>
             <Navbar />
-            <div className={styles.loginContent}>
+            <div className={styles.loginContainer}>
                 <div className={styles.login}>
                     <h2>Logowanie</h2>
                     <form onSubmit={handleSubmit}>

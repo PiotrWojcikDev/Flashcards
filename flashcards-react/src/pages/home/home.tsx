@@ -7,7 +7,7 @@ const HomeComponent = () => {
   return (
     <>
         <Navbar/>
-        <div className={styles.homeContent}>
+        <div className={styles.homeContainer}>
             <h1><i>Witaj w aplikacji FlashLearn!</i></h1>
             <p>
                 Witamy w naszej aplikacji do nauki języków obcych (i nie tylko) za pomocą fiszek!

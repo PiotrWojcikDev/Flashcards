@@ -1,4 +1,4 @@
-.setsListContent {
+.setsListContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,12 +8,12 @@
     padding-bottom: 100px;
 }
 
-.setsListContent .filterContainer {
+.setsListContainer .filterContainer {
     justify-content: center;
     position: relative;
 }
 
-.setsListContent .filterContainer input {
+.setsListContainer .filterContainer input {
     padding: 8px 15px;
     font-size: 16px;
     border: 2px solid #ccc;
@@ -23,13 +23,13 @@
     text-align: center;
 }
 
-.setsListContent .filterContainer input:focus,
-.setsListContent .filterContainer:focus-within i {
+.setsListContainer .filterContainer input:focus,
+.setsListContainer .filterContainer:focus-within i {
     color: #333; 
     border-color: #333;
 }
 
-.setsListContent .filterContainer i {
+.setsListContainer .filterContainer i {
     position: absolute;
     top: 50%; 
     left: 10px; 
@@ -40,23 +40,23 @@
 }
 
 
-.setsListContent .filterContainer input:focus {
+.setsListContainer .filterContainer input:focus {
     border-color: #333;
     outline: none;
 }
 
-.setsListContent .setsList {
+.setsListContainer .setsList {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.setsListContent button {
+.setsListContainer button {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.setsListContent .addButton {
+.setsListContainer .addButton {
     font-size: 1rem;
     display: block;
     margin-bottom: 10px;
@@ -68,10 +68,10 @@
     cursor: pointer;
 }
 
-.setsListContent .addButton:hover {
+.setsListContainer .addButton:hover {
     opacity: 0.8;
 }
 
-.setsListContent i {
+.setsListContainer i {
     font-size: 12px;
 }

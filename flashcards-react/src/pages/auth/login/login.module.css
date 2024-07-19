@@ -1,4 +1,4 @@
-.loginContent {
+.loginContainer {
     width: 100%;
     margin-top: 15%;
     display: flex;
@@ -7,11 +7,11 @@
     flex-direction: column;
 }
 
-.loginContent h2 {
+.loginContainer h2 {
     text-align: center;
 }
 
-.loginContent form {
+.loginContainer form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,11 +19,11 @@
     width: 400px;
 }
 
-.loginContent form div {
+.loginContainer form div {
     margin: 5px;
 }
 
-.loginContent form input {
+.loginContainer form input {
     width: 100%; 
     padding: 10px;
     margin-bottom: 10px; 
@@ -71,7 +71,7 @@
 }
 
 
-.loginContent .formActions {
+.loginContainer .formActions {
     width: 60%;
     display: flex;
     flex-direction: column;
