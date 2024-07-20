@@ -43,7 +43,7 @@
     backface-visibility: hidden;
 }
 
-p {
+.learnContainer p {
     font-size: 1.4rem;
     text-align: center;
     padding: 10px;
@@ -62,7 +62,7 @@ p {
     width: 10%;
 }
 
-i {
+.learnContainer i {
     font-size: 20px;
 }
 
@@ -96,8 +96,12 @@ i {
     color: red;
 }
 
-button {
+.learnContainer button {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.learnContainer button:hover {
+    opacity: 0.8;
 }
 
 .knowButton,
@@ -120,6 +124,3 @@ button {
     background-color: #f74c5e;
 }
 
-button:hover {
-    opacity: 0.8;
-}

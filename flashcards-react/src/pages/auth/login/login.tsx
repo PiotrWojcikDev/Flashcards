@@ -2,6 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import styles from './login.module.css'; 
 import { Link, useNavigate } from 'react-router-dom'; 
 import Navbar from '../../../components/navbar/navbar';
+import { loginService, login } from '../../../services/auth-service';
 
 interface FormErrors {
     email: string;
@@ -14,9 +15,21 @@ const LoginComponent = () => {
     const [errors, setErrors] = useState<FormErrors>({ email: '', password: '' });
     const navigate = useNavigate(); 
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-        console.log();
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+    
+        try {
+            const loginObj = { email, password };
+            const response = await loginService(loginObj);
+            
+            login(response.userId);  
+            
+            navigate('/');  
+        } catch (err) {
+            console.error('Login error:', err);
+        }
     };
+    
     return (
         <>
             <Navbar />

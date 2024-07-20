@@ -4,6 +4,7 @@ import SingleSetComponent from '../../components/single-set/single-set';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/navbar/navbar';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { getAllSetsByUserId } from '../../services/set-service';
 
 interface Set {
     setId: string;
@@ -16,17 +17,24 @@ interface Set {
 const SetsListComponent = () => {
     const [sets, setSets] = useState<Set[]>([]);
     const [filterText, setFilterText] = useState<string>('');
-
+    
     useEffect(() => {
         fetchSets();
     }, []);
 
     const fetchSets = async () => {
-        const mockSets: Set[] = [
-            { setId: '1', setName: 'Ekonomia Podstawowa', createdAt: '2024-05-27T16:57:00Z', updatedAt: '2024-06-21T14:43:00Z', flashcardCount: 3 },
-            { setId: '2', setName: 'Filologia angielska', createdAt: '2024-06-18T16:14:00Z', updatedAt: '', flashcardCount: 0 },
-        ];
-        setSets(mockSets);
+        try {
+            const userId = localStorage.getItem('userId'); 
+
+            if (!userId) {
+                throw new Error('User is not logged in');
+            }
+
+            const fetchedSets = await getAllSetsByUserId(userId);
+            setSets(fetchedSets);
+        } catch (error: any) {
+            console.log(error)
+        } 
     };
 
     const filteredSets = sets.filter(set => set.setName.toLowerCase().includes(filterText.toLowerCase()));

@@ -1,9 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './home.module.css'; 
 import Navbar from '../../components/navbar/navbar';
+import {getLoggedInUserId} from '../../services/auth-service';
 
 const HomeComponent = () => {
+
+  const navigate = useNavigate(); 
+
+  const goToSets = () => {
+    navigate('/sets'); 
+  };
+
   return (
     <>
         <Navbar/>
@@ -17,7 +25,9 @@ const HomeComponent = () => {
                 potrzebne. 
                 Zapraszamy do korzystania z naszej aplikacji i życzymy owocnej nauki języków obcych!
             </p>
-            <button >Do zbiorów!</button>
+            {
+              getLoggedInUserId() && <button onClick={goToSets}>Do zbiorów!</button>
+            }
         </div>
 
     </>
