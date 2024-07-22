@@ -1,4 +1,4 @@
-#overlay {
+.overlay {
     position: fixed;
     top: 0;
     right: 0;
@@ -8,7 +8,7 @@
     z-index: 12;
 }
 
-#container {
+.updateSetModalcontainer {
     z-index: 13;
     margin: auto;
     position: fixed;
@@ -26,7 +26,7 @@
     justify-content: space-between;
 }
 
-#header {
+.updateSetModalcontainer .header {
     border-bottom: 1px solid #ccc;
     height: 70px;
     display: flex;
@@ -38,13 +38,13 @@
     color: #333;
 }
 
-#content {
+.updateSetModalcontainer .content {
     font-size: 18px;
     overflow: auto;
     max-height: 550px; 
 }
 
-#actions {
+.updateSetModalcontainer .actions {
     display: flex;
     justify-content: space-around;
     height: 40px;
@@ -53,7 +53,7 @@
     overflow: auto;
 }
 
-button {
+.updateSetModalcontainer button {
     flex: 1;
     padding: 10px 20px;
     margin: 0 10px;
@@ -66,40 +66,45 @@ button {
       
 }
 
-button:hover {
+.updateSetModalcontainer button:hover {
     opacity: 0.8;
 }
 
-button:disabled {
+.updateSetModalcontainer button:disabled {
     opacity: 0.6;   
     cursor: not-allowed;
 }
 
-button:nth-child(1) {
+.updateSetModalcontainer button:nth-child(1) {
     background-color: #696967;
 }
 
-button:nth-child(2) {
+.updateSetModalcontainer button:nth-child(2) {
     background-color: #f74c5e;
 }
 
-form input {
+.updateSetModalcontainer form input {
     width: 80%; 
     padding: 10px;
     margin-bottom: 10px; 
     border: 1px solid #ccc; 
-    border-radius: 8px; 
+    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     font-size: 16px;
 }
 
-.field {
+.updateSetModalcontainer .field {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    width: 100%; 
+    align-items: center;
+    width: 100%;
 }
 
-input {
+.updateSetModalcontainer input {
     text-align: center;
 }
+
+[hidden] {
+  display: none;
+}
+

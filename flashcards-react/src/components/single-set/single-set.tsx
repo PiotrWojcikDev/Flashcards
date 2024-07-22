@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './single-set.module.css';
+import UpdateSetModal from '../modals/set/update-set-modal/update-set-modal';
+import DeleteSetModal from '../modals/set/delete-set-confirmation-modal/delete-set-confirmation-modal';
 
 interface Set {
     setId: string;
@@ -12,7 +14,9 @@ interface Set {
 
 interface Props {
     setObj: Set;
+    onUpdate: () => void; 
     onDelete: () => void; 
+    refreshSetsList: () => void;
 }
 
 const formatDate = (dateString?: string) => {
@@ -33,20 +37,29 @@ const formatDate = (dateString?: string) => {
 };
 
 
-const SingleSetComponent: React.FC<Props> = ({ setObj, onDelete }) => {
+const SingleSetComponent: React.FC<Props> = ({ setObj,  refreshSetsList }) => {
     const navigate = useNavigate();
-
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    
     const navigateToSetDetails = () => {
         navigate(`/sets/${setObj.setId}/flashcards`);
     };
 
-    const editSet = () => {
-        navigate(`/edit-set/${setObj.setId}`);
+    const handleUpdate = () => {
+        setShowUpdateModal(true);
     };
 
-    const deleteSet = () => {
-        console.log("Delete set" + JSON.stringify(setObj));
-        onDelete();
+    const handleDelete = () => {
+        setShowDeleteModal(true);
+    };
+
+    const closeUpdateSetModal = () => {
+        setShowUpdateModal(false);
+    };
+
+    const closeDeleteSetModal = () => {
+        setShowDeleteModal(false);
     };
 
     return (
@@ -61,9 +74,23 @@ const SingleSetComponent: React.FC<Props> = ({ setObj, onDelete }) => {
             </div>
             <div className={styles.setActions}>
                 <button onClick={navigateToSetDetails}>Zobacz</button>
-                <button onClick={editSet}>Edytuj</button>
-                <button onClick={deleteSet}>Usuń</button>
+                <button onClick={handleUpdate}>Edytuj</button>
+                <button onClick={handleDelete}>Usuń</button>
             </div>
+            {showUpdateModal && (
+                <UpdateSetModal
+                    setObj={setObj}
+                    closeUpdateSetModal={closeUpdateSetModal}
+                    refreshSetsList={refreshSetsList}
+                />
+            )}
+            {showDeleteModal && (
+                <DeleteSetModal
+                    setObj={setObj}
+                    closeDeleteSetModal={closeDeleteSetModal}
+                    refreshSetsList={refreshSetsList}
+                />
+            )}
         </div>
     );
     

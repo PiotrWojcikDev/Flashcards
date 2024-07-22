@@ -1,4 +1,4 @@
-#overlay {
+.overlay {
     position: fixed;
     top: 0;
     right: 0;
@@ -8,7 +8,7 @@
     z-index: 12;
 }
 
-#container {
+.deleteSetModalContainer {
     z-index: 13;
     margin: auto;
     position: fixed;
@@ -26,7 +26,7 @@
     justify-content: space-between;
 }
 
-#header {
+.deleteSetModalContainer .header {
     border-bottom: 1px solid #ccc;
     height: 60px;
     display: flex;
@@ -38,7 +38,7 @@
     color: #333;
 }
 
-#content {
+.deleteSetModalContainer .content {
     flex: 2;
     text-align: center;
     padding: 10px;
@@ -47,7 +47,7 @@
     max-height: 150px; 
 }
 
-#actions {
+.deleteSetModalContainer .actions {
     display: flex;
     flex: 1;
     justify-content: flex-end;
@@ -56,8 +56,7 @@
     padding: 10px;
 }
 
-
-button {
+.deleteSetModalContainer button {
     flex: 1;
     padding: 10px 15px;
     border-radius: 5px;
@@ -69,15 +68,18 @@ button {
       
 }
 
-button:hover {
+.deleteSetModalContainer button:hover {
     opacity: 0.8;
 }
 
-button:nth-child(1) {
+.deleteSetModalContainer button:nth-child(1) {
     background-color: #696967;
 }
 
-button:nth-child(2) {
+.deleteSetModalContainer button:nth-child(2) {
     background-color: #f74c5e;
 }
 
+.deleteSetModalContainer i {
+    font-size: 100%;
+}

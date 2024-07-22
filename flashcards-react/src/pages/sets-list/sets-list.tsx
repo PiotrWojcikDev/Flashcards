@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 import Navbar from '../../components/navbar/navbar';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { getAllSetsByUserId } from '../../services/set-service';
+import AddSetModal from '../../components/modals/set/add-set-modal/add-set-modal';
+import UpdateSetModal from '../../components/modals/set/update-set-modal/update-set-modal';
+import DeleteSetConfirmationModal from '../../components/modals/set/delete-set-confirmation-modal/delete-set-confirmation-modal';
+
 
 interface Set {
     setId: string;
@@ -17,7 +21,12 @@ interface Set {
 const SetsListComponent = () => {
     const [sets, setSets] = useState<Set[]>([]);
     const [filterText, setFilterText] = useState<string>('');
-    
+    const [showAddSetModal, setShowAddSetModal] = useState<boolean>(false);
+    const [showUpdateSetModal, setShowUpdateSetModal] = useState<boolean>(false);
+    const [showDeleteSetModal, setShowDeleteSetModal] = useState<boolean>(false);
+    const [selectedSet, setSelectedSet] = useState<Set | null>(null);
+
+
     useEffect(() => {
         fetchSets();
     }, []);
@@ -27,10 +36,14 @@ const SetsListComponent = () => {
             const userId = localStorage.getItem('userId'); 
 
             if (!userId) {
-                throw new Error('User is not logged in');
+                console.log('User is not logged in');
+                return;
             }
 
-            const fetchedSets = await getAllSetsByUserId(userId);
+            let fetchedSets = await getAllSetsByUserId(userId);
+            fetchedSets = fetchedSets.sort(
+                (a: { setName: string; }, b: { setName: string; }) => a.setName.localeCompare(b.setName)
+            );
             setSets(fetchedSets);
         } catch (error: any) {
             console.log(error)
@@ -43,6 +56,40 @@ const SetsListComponent = () => {
         setFilterText(e.target.value);
     };
 
+    const openAddSetModal = () => {
+        setShowAddSetModal(true);
+    };
+
+    const closeAddSetModal = () => {
+        setShowAddSetModal(false);
+    };
+    
+    const openUpdateSetModal = (set: Set) => {
+        setSelectedSet(set);
+        setShowUpdateSetModal(true);
+    };
+    
+    const closeUpdateSetModal = () => {
+        setSelectedSet(null);
+        setShowUpdateSetModal(false);
+    };
+    
+    const openDeleteSetModal = (set: Set) => {
+        setSelectedSet(set);
+        setShowDeleteSetModal(true);
+    };
+    
+    const closeDeleteSetModal = () => {
+        setSelectedSet(null);
+        setShowDeleteSetModal(false);
+    };
+    
+
+
+    const refreshSetsList = () => {
+        fetchSets();
+    };
+
     return (
         <>
             <Navbar/>
@@ -53,15 +100,17 @@ const SetsListComponent = () => {
                     <input type="text" placeholder="Filtruj zbiory" value={filterText} onChange={handleFilterChange} />
                 </div>
                 <div className={styles.setsList}>
-                    <button className={styles.addButton}>
+                    <button className={styles.addButton} onClick={openAddSetModal}>
                         Dodaj zbiór&nbsp;
                         <i className="fa-solid fa-plus fa-sm"></i>
                         </button>
                     {filteredSets.map(set => (
-                        <SingleSetComponent key={set.setId} setObj={set} onDelete={() => console.log('Delete set', set.setId)} />
+                        <SingleSetComponent key={set.setId} setObj={set} onUpdate={() => openUpdateSetModal(set)}
+                        onDelete={() => openDeleteSetModal(set)} refreshSetsList={refreshSetsList}/>
                     ))}
                 </div>
             </div>
+            {showAddSetModal && <AddSetModal closeAddSetModal={closeAddSetModal} refreshSetsList={refreshSetsList} />}
         </>
         
     );

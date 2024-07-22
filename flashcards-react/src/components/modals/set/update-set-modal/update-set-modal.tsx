@@ -1,21 +1,24 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import styles from './add-set-modal.module.css';
-import { getLoggedInUserId } from '../../../../services/auth-service';
-import { addSet } from '../../../../services/set-service';
+import styles from './update-set-modal.module.css';
+import { updateSet } from '../../../../services/set-service';
 
 interface FormValues {
     setName: string;
 }
 
-interface AddSetModalProps {
-    closeAddSetModal: () => void;
+interface UpdateSetModalProps {
+    closeUpdateSetModal: () => void;
     refreshSetsList: () => void;
+    setObj: {
+        setId: string;
+        setName: string;
+    };
 }
 
-const AddSetModal: React.FC<AddSetModalProps> = ({ closeAddSetModal, refreshSetsList }) => {
-    const { register, handleSubmit, formState: { errors, touchedFields, dirtyFields }, setError, clearErrors } = useForm<FormValues>({
-        mode: 'onChange', 
+const UpdateSetModal: React.FC<UpdateSetModalProps> = ({ closeUpdateSetModal, refreshSetsList, setObj }) => {
+    const { register, handleSubmit, formState: { errors, dirtyFields, touchedFields }, setError, clearErrors } = useForm<FormValues>({
+        mode: 'onChange',
     });
 
     const validateSetName = (value: string) => {
@@ -28,14 +31,14 @@ const AddSetModal: React.FC<AddSetModalProps> = ({ closeAddSetModal, refreshSets
 
     const onSubmit = async (data: FormValues) => {
         try {
-            await addSet({
-                userId: getLoggedInUserId(),
+            await updateSet({
+                setId: setObj.setId,
                 setName: data.setName
             });
             refreshSetsList();
-            closeAddSetModal();
+            closeUpdateSetModal();
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -45,9 +48,9 @@ const AddSetModal: React.FC<AddSetModalProps> = ({ closeAddSetModal, refreshSets
 
     return (
         <>
-            <div className={styles.addSetModalOverlay} onClick={closeAddSetModal}></div>
-            <div className={styles.addSetModalContainer}>
-                <div className={styles.header}>Dodawanie zbioru</div>
+            <div className={styles.overlay} onClick={closeUpdateSetModal}></div>
+            <div className={styles.updateSetModalcontainer}>
+                <div className={styles.header}>Edycja zbioru</div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className={styles.content}>
                         <div className={styles.field}>
@@ -55,7 +58,7 @@ const AddSetModal: React.FC<AddSetModalProps> = ({ closeAddSetModal, refreshSets
                                 type="text"
                                 id="setName"
                                 className={styles.setName}
-                                placeholder="Nazwa zbioru"
+                                placeholder={setObj.setName}
                                 {...register('setName', {
                                     required: '*Pole jest wymagane.',
                                     onChange: (e) => validateSetName(e.target.value),
@@ -69,9 +72,9 @@ const AddSetModal: React.FC<AddSetModalProps> = ({ closeAddSetModal, refreshSets
                     </div>
                     <div className={styles.actions}>
                         <button type="submit" className={styles.btnCustom} disabled={isSubmitButtonDisabled()}>
-                            Dodaj zbiór
+                            Zatwierdź
                         </button>
-                        <button type="button" className={styles.cancelBtn} onClick={closeAddSetModal}>
+                        <button type="button" className={styles.cancelBtn} onClick={closeUpdateSetModal}>
                             Anuluj
                         </button>
                     </div>
@@ -81,4 +84,4 @@ const AddSetModal: React.FC<AddSetModalProps> = ({ closeAddSetModal, refreshSets
     );
 };
 
-export default AddSetModal;
+export default UpdateSetModal;
