@@ -63,28 +63,6 @@ const SetsListComponent = () => {
     const closeAddSetModal = () => {
         setShowAddSetModal(false);
     };
-    
-    const openUpdateSetModal = (set: Set) => {
-        setSelectedSet(set);
-        setShowUpdateSetModal(true);
-    };
-    
-    const closeUpdateSetModal = () => {
-        setSelectedSet(null);
-        setShowUpdateSetModal(false);
-    };
-    
-    const openDeleteSetModal = (set: Set) => {
-        setSelectedSet(set);
-        setShowDeleteSetModal(true);
-    };
-    
-    const closeDeleteSetModal = () => {
-        setSelectedSet(null);
-        setShowDeleteSetModal(false);
-    };
-    
-
 
     const refreshSetsList = () => {
         fetchSets();
@@ -105,8 +83,7 @@ const SetsListComponent = () => {
                         <i className="fa-solid fa-plus fa-sm"></i>
                         </button>
                     {filteredSets.map(set => (
-                        <SingleSetComponent key={set.setId} setObj={set} onUpdate={() => openUpdateSetModal(set)}
-                        onDelete={() => openDeleteSetModal(set)} refreshSetsList={refreshSetsList}/>
+                        <SingleSetComponent key={set.setId} setObj={set} refreshSetsList={refreshSetsList}/>
                     ))}
                 </div>
             </div>

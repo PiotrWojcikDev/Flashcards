@@ -26,7 +26,7 @@ export class FlashcardsListComponent {
   set: any = "";
   setFlashcards: Array<any> = [];
   filteredFlashcards: Array<any> = [];
-  filterText: string = ''; // Pole tekstowe do filtrowania
+  filterText: string = ''; 
   setId!: string;
 
   constructor(
@@ -60,7 +60,7 @@ export class FlashcardsListComponent {
       next: (res) => {
         this.setFlashcards = res.sort(
           (a: { front: string; }, b: { front: string; }) => a.front.localeCompare(b.front)
-        ); // Sortowanie fiszek po polu 'front'
+        ); 
         this.filteredFlashcards = [...this.setFlashcards];
         console.log(this.setFlashcards);
 

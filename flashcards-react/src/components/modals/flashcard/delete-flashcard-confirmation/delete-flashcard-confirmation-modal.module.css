@@ -1,4 +1,4 @@
-#overlay {
+.overlay {
     position: fixed;
     top: 0;
     right: 0;
@@ -8,7 +8,7 @@
     z-index: 12;
 }
 
-#container {
+.deleteFlashcardModalContainer {
     z-index: 13;
     margin: auto;
     position: fixed;
@@ -26,7 +26,7 @@
     justify-content: space-between;
 }
 
-#header {
+.deleteFlashcardModalContainer .header {
     border-bottom: 1px solid #ccc;
     height: 60px;
     display: flex;
@@ -38,7 +38,7 @@
     color: #333;
 }
 
-#content {
+.deleteFlashcardModalContainer .content {
     flex: 2;
     text-align: center;
     padding: 10px;
@@ -47,7 +47,7 @@
     max-height: 150px; 
 }
 
-#actions {
+.deleteFlashcardModalContainer .actions {
     display: flex;
     flex: 1;
     justify-content: flex-end;
@@ -56,11 +56,11 @@
     padding: 10px;
 }
 
-
-button {
+.deleteFlashcardModalContainer button {
     flex: 1;
     padding: 10px 15px;
     border-radius: 5px;
+    margin: 0;
     border: none;
     cursor: pointer;
     font-weight: bold;
@@ -69,15 +69,18 @@ button {
       
 }
 
-button:hover {
+.deleteFlashcardModalContainer button:hover {
     opacity: 0.8;
 }
 
-button:nth-child(1) {
+.deleteFlashcardModalContainer button:nth-child(1) {
     background-color: #696967;
 }
 
-button:nth-child(2) {
+.deleteFlashcardModalContainer button:nth-child(2) {
     background-color: #f74c5e;
 }
 
+.deleteFlashcardModalContainer i {
+    font-size: 100%;
+}

@@ -21,20 +21,20 @@ export class LearnComponent {
   totalFlashcards: number = 0;
   currentFlashcardIndex: number = 0; 
   correctAnswers: number = 0;
-  inCorrectAnswers: number = 0;
+  incorrectAnswers: number = 0;
 
   allFlashcards: Array<any> = [];
   correctFlashcards: Array<any> = [];
-  inCorrectFlashcards: Array<any> = [];
+  incorrectFlashcards: Array<any> = [];
 
   constructor(
     public setService: SetService,
     private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.paramMap.subscribe(params => {
-      const setId = params.get('setId'); // Pobierz 'setId' z parametrów URL
+      const setId = params.get('setId'); 
       if (setId) {
-        this.getAllFlashcardsBySetId(setId); // Użyj 'setId' do pobrania fiszek
+        this.getAllFlashcardsBySetId(setId); 
       }
     });
   }
@@ -44,7 +44,7 @@ export class LearnComponent {
     .subscribe({
       next: (res) => {
         this.allFlashcards = res.map((flashcard: any) => ({ ...flashcard, learned: false }));
-        this.totalFlashcards = this.allFlashcards.length; // Ustaw całkowitą liczbę fiszek
+        this.totalFlashcards = this.allFlashcards.length; 
         console.log(this.allFlashcards);
       },
       error: (err) => {
@@ -57,33 +57,26 @@ export class LearnComponent {
     this.currentFlashcardIndex++;
     if (this.currentFlashcardIndex >= this.allFlashcards.length) {
       this.currentFlashcardIndex = 0;
-      if (this.inCorrectFlashcards.length === 0) {
-        console.log("Wszystkie odpowiedzi są już poprawne.");
+      if (this.incorrectFlashcards.length === 0) {
         this.checkCompletion();
-
-        // Można zresetować naukę lub poinformować użytkownika o zakończeniu
       } else {
-        // Rozpocznij przejście przez niepoprawne odpowiedzi
-        this.allFlashcards = [...this.inCorrectFlashcards];
-        this.inCorrectFlashcards = [];
+        this.allFlashcards = [...this.incorrectFlashcards];
+        this.incorrectFlashcards = [];
       }
     }
   }
   
-  
-
   answerFlashcard(isCorrect: boolean) {
     const currentFlashcard = this.allFlashcards[this.currentFlashcardIndex];
   
     if (isCorrect) {
       currentFlashcard.learned = true;
       this.correctAnswers++;
-      // Usuń fiszkę z listy niepoprawnych odpowiedzi
-      this.inCorrectFlashcards = this.inCorrectFlashcards.filter(fc => fc !== currentFlashcard);
+      this.incorrectFlashcards = this.incorrectFlashcards.filter(fc => fc !== currentFlashcard);
     } else {
-      if (!this.inCorrectFlashcards.includes(currentFlashcard)) {
-        this.inCorrectAnswers++;
-        this.inCorrectFlashcards.push(currentFlashcard);
+      if (!this.incorrectFlashcards.includes(currentFlashcard)) {
+        this.incorrectAnswers++;
+        this.incorrectFlashcards.push(currentFlashcard);
       }
     }
   
@@ -92,10 +85,8 @@ export class LearnComponent {
   
 
   checkCompletion() {
-    if (this.remainingCards === 0 && this.inCorrectFlashcards.length === 0) {
-      console.log('Gratulacje! Wszystkie fiszki zostały nauczone.');
+    if (this.remainingCards === 0 && this.incorrectFlashcards.length === 0) {
       this.setService.showLearningFinishedModal = true;
-      // Tu możesz zresetować stan lub zaoferować powtórkę.
     }
   }
 

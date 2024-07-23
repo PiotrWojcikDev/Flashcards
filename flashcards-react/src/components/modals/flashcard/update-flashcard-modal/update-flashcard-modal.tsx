@@ -1,26 +1,27 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import styles from './add-flashcard-modal.module.css'; 
-import { getLoggedInUserId } from '../../../../services/auth-service';
-import { addFlashcard } from '../../../../services/flashcard-service';
-import { useParams } from 'react-router-dom';
+import styles from './update-flashcard-modal.module.css'; 
+import { updateFlashcard } from '../../../../services/flashcard-service'; 
 
 interface FormValues {
     front: string;
     back: string;
 }
 
-interface AddFlashcardModalProps {
-    closeAddFlashcardModal: () => void;
-    refreshFlashcardList: () => void;
+interface UpdateFlashcardModalProps {
+    closeUpdateFlashcardModal: () => void;
+    refreshFlashcardsList: () => void;
+    flashcardObj: {
+        flashcardId: string;
+        front: string;
+        back: string;
+    };
 }
 
-const AddFlashcardModal: React.FC<AddFlashcardModalProps> = ({ closeAddFlashcardModal, refreshFlashcardList }) => {
-    const { setId } = useParams();
+const UpdateFlashcardModal: React.FC<UpdateFlashcardModalProps> = ({ closeUpdateFlashcardModal, refreshFlashcardsList, flashcardObj }) => {
     const { register, handleSubmit, formState: { errors, touchedFields, dirtyFields }, setError, clearErrors } = useForm<FormValues>({
-        mode: 'onChange',
+        mode: 'onChange'
     });
-    
 
     const validateField = (field: 'front' | 'back', value: string) => {
         if (!value.trim()) {
@@ -32,13 +33,13 @@ const AddFlashcardModal: React.FC<AddFlashcardModalProps> = ({ closeAddFlashcard
 
     const onSubmit = async (data: FormValues) => {
         try {
-            await addFlashcard({
-                setId: setId,
+            await updateFlashcard({
+                flashcardId: flashcardObj.flashcardId, 
                 front: data.front,
                 back: data.back
             });
-            refreshFlashcardList();
-            closeAddFlashcardModal();
+            refreshFlashcardsList();
+            closeUpdateFlashcardModal(); 
         } catch (error) {
             console.log(error);
         }
@@ -50,9 +51,9 @@ const AddFlashcardModal: React.FC<AddFlashcardModalProps> = ({ closeAddFlashcard
 
     return (
         <>
-            <div className={styles.addFlashcardModalOverlay} onClick={closeAddFlashcardModal}></div>
-            <div className={styles.addFlashcardModalContainer}>
-                <div className={styles.header}>Dodawanie fiszki</div>
+            <div className={styles.updateFlashcardModalOverlay} onClick={closeUpdateFlashcardModal}></div>
+            <div className={styles.updateFlashcardModalContainer}>
+                <div className={styles.header}>Edytowanie fiszki</div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className={styles.content}>
                         <div className={styles.field}>
@@ -60,7 +61,7 @@ const AddFlashcardModal: React.FC<AddFlashcardModalProps> = ({ closeAddFlashcard
                                 type="text"
                                 id="front"
                                 className={styles.input}
-                                placeholder="Przód fiszki"
+                                placeholder={flashcardObj.front}
                                 {...register('front', {
                                     required: '*Pole jest wymagane.',
                                     onChange: (e) => validateField('front', e.target.value),
@@ -76,7 +77,7 @@ const AddFlashcardModal: React.FC<AddFlashcardModalProps> = ({ closeAddFlashcard
                                 type="text"
                                 id="back"
                                 className={styles.input}
-                                placeholder="Tył fiszki"
+                                placeholder={flashcardObj.back}
                                 {...register('back', {
                                     required: '*Pole jest wymagane.',
                                     onChange: (e) => validateField('back', e.target.value),
@@ -90,9 +91,9 @@ const AddFlashcardModal: React.FC<AddFlashcardModalProps> = ({ closeAddFlashcard
                     </div>
                     <div className={styles.actions}>
                         <button type="submit" disabled={isSubmitButtonDisabled()}>
-                            Dodaj fiszkę
+                            Zatwierdź
                         </button>
-                        <button type="button" onClick={closeAddFlashcardModal}>
+                        <button type="button" onClick={closeUpdateFlashcardModal}>
                             Anuluj
                         </button>
                     </div>
@@ -102,4 +103,4 @@ const AddFlashcardModal: React.FC<AddFlashcardModalProps> = ({ closeAddFlashcard
     );
 };
 
-export default AddFlashcardModal;
+export default UpdateFlashcardModal;

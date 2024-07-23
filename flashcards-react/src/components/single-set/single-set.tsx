@@ -14,8 +14,6 @@ interface Set {
 
 interface Props {
     setObj: Set;
-    onUpdate: () => void; 
-    onDelete: () => void; 
     refreshSetsList: () => void;
 }
 
@@ -46,11 +44,11 @@ const SingleSetComponent: React.FC<Props> = ({ setObj,  refreshSetsList }) => {
         navigate(`/sets/${setObj.setId}/flashcards`);
     };
 
-    const handleUpdate = () => {
+    const openUpdateSetModal = () => {
         setShowUpdateModal(true);
     };
 
-    const handleDelete = () => {
+    const openDeleteSetModal = () => {
         setShowDeleteModal(true);
     };
 
@@ -74,8 +72,8 @@ const SingleSetComponent: React.FC<Props> = ({ setObj,  refreshSetsList }) => {
             </div>
             <div className={styles.setActions}>
                 <button onClick={navigateToSetDetails}>Zobacz</button>
-                <button onClick={handleUpdate}>Edytuj</button>
-                <button onClick={handleDelete}>Usuń</button>
+                <button onClick={openUpdateSetModal}>Edytuj</button>
+                <button onClick={openDeleteSetModal}>Usuń</button>
             </div>
             {showUpdateModal && (
                 <UpdateSetModal

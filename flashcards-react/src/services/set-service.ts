@@ -13,7 +13,6 @@ export const getSetById = async (setId: string) => {
 
 export const getAllSetsByUserId = async (userId: string) => {
   const response = await axios.get(`${ApiPaths.Sets}/user/${userId}`);
-  console.log("getAllSetsByUserId " + response);
   return response.data;
 };
 
