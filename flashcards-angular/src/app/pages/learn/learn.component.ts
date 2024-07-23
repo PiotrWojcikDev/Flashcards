@@ -18,14 +18,13 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
   providers: [SetService]
 })
 export class LearnComponent {
+  allFlashcards: Array<any> = [];
+
   totalFlashcards: number = 0;
   currentFlashcardIndex: number = 0; 
   correctAnswers: number = 0;
   incorrectAnswers: number = 0;
 
-  allFlashcards: Array<any> = [];
-  correctFlashcards: Array<any> = [];
-  incorrectFlashcards: Array<any> = [];
 
   constructor(
     public setService: SetService,
@@ -45,7 +44,6 @@ export class LearnComponent {
       next: (res) => {
         this.allFlashcards = res.map((flashcard: any) => ({ ...flashcard, learned: false }));
         this.totalFlashcards = this.allFlashcards.length; 
-        console.log(this.allFlashcards);
       },
       error: (err) => {
         console.log(err);
@@ -54,40 +52,28 @@ export class LearnComponent {
   }
 
   getNextFlashcard() {
-    this.currentFlashcardIndex++;
-    if (this.currentFlashcardIndex >= this.allFlashcards.length) {
-      this.currentFlashcardIndex = 0;
-      if (this.incorrectFlashcards.length === 0) {
-        this.checkCompletion();
+    if (this.currentFlashcardIndex < this.allFlashcards.length - 1) {
+      this.currentFlashcardIndex++;
+    } else {
+      const incorrectFlashcards = this.allFlashcards.filter(flashcard => !flashcard.learned);
+      if (incorrectFlashcards.length === 0) {
+        this.setService.showLearningFinishedModal = true;
       } else {
-        this.allFlashcards = [...this.incorrectFlashcards];
-        this.incorrectFlashcards = [];
+        this.allFlashcards = [...incorrectFlashcards];
+        this.currentFlashcardIndex = 0;
       }
     }
   }
-  
+
   answerFlashcard(isCorrect: boolean) {
     const currentFlashcard = this.allFlashcards[this.currentFlashcardIndex];
-  
     if (isCorrect) {
       currentFlashcard.learned = true;
       this.correctAnswers++;
-      this.incorrectFlashcards = this.incorrectFlashcards.filter(fc => fc !== currentFlashcard);
     } else {
-      if (!this.incorrectFlashcards.includes(currentFlashcard)) {
-        this.incorrectAnswers++;
-        this.incorrectFlashcards.push(currentFlashcard);
-      }
+      this.incorrectAnswers++; 
     }
-  
     this.getNextFlashcard();
-  }
-  
-
-  checkCompletion() {
-    if (this.remainingCards === 0 && this.incorrectFlashcards.length === 0) {
-      this.setService.showLearningFinishedModal = true;
-    }
   }
 
   get remainingCards() {
