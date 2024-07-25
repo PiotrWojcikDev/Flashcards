@@ -44,12 +44,19 @@
             <span *ngIf="registrationForm.controls['password'].errors?.['required'] && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)" class="form-error" >
                 *Hasło jest wymagane.
             </span>    
+            <span *ngIf="registrationForm.controls['password'].errors?.['pattern'] && registrationForm.controls['password'].touched" class="form-error">
+                *Hasło musi zawierać co najmniej 8 znaków, w tym małą i dużą literę, cyfrę oraz znak specjalny.
+            </span>
         </div>
+
         <div class="field">
-            <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Potwierdź hasło">
+            <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Potwierdź hasło" >
             <span *ngIf="registrationForm.controls['confirmPassword'].errors?.['required'] && (registrationForm.controls['confirmPassword'].dirty || registrationForm.controls['confirmPassword'].touched)" class="form-error">
                 *Potwierdzenie hasła jest wymagane.
             </span>    
+            <span *ngIf="registrationForm.controls['confirmPassword'].errors?.['noMatch'] && registrationForm.controls['confirmPassword'].touched" class="form-error">
+                *Hasła nie pasują do siebie.
+            </span>
         </div>
         
         <div class="form-actions">
