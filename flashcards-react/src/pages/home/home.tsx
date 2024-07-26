@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './home.module.css'; 
 import Navbar from '../../components/navbar/navbar';
 import {getLoggedInUserId} from '../../services/auth-service';

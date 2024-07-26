@@ -46,6 +46,7 @@ const FlashcardsListComponent = () => {
       console.error("Error fetching flashcards:", error); 
     }
   };
+  
 
   const fetchSetDetails = async (id: string) => {
     try {
@@ -57,9 +58,15 @@ const FlashcardsListComponent = () => {
   };
 
 
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterText(e.target.value);
+  };
+
   const filteredFlashcards = flashcards.filter(flashcard =>
-      flashcard.front.toLowerCase().includes(filterText.toLowerCase())
+    flashcard.front.toLowerCase().includes(filterText.toLowerCase()) ||
+    flashcard.back.toLowerCase().includes(filterText.toLowerCase())
   );
+
 
   const navigateToLearn = () => {
     if (setId) {
@@ -88,7 +95,7 @@ const FlashcardsListComponent = () => {
 
         <div className={styles.filterContainer}>
           <i className="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Filtruj fiszki" />
+          <input type="text" placeholder="Filtruj fiszki" value={filterText} onChange={handleFilterChange} />
         </div>
 
         <div className={styles.flashcardsList}>

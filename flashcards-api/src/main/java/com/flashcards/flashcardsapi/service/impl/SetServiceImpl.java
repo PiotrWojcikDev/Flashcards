@@ -21,19 +21,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class SetServiceImpl implements SetService {
-
+    @Autowired
     private SetRepository setRepository;
-    private UserRepository userRepository;
 
     @Autowired
-    public SetServiceImpl(SetRepository setRepository, UserRepository userRepository) {
-        this.setRepository = setRepository;
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     @Override
     @Transactional
-    public Set createSet(SetDto setDto) {
+    public SetDto createSet(SetDto setDto) {
         Set set = new Set();
         set.setSetName(setDto.getSetName());
 
@@ -43,7 +39,9 @@ public class SetServiceImpl implements SetService {
         set.setUser(user);
         set.setCreatedAt(new Date());
         set.setFlashcardCount(0);
-        return setRepository.save(set);
+        Set savedSet = setRepository.save(set);
+
+        return convertToSetDto(savedSet);
     }
 
     public SetDto getSetById(Long setId) {
@@ -61,12 +59,11 @@ public class SetServiceImpl implements SetService {
 
     @Override
     @Transactional
-    public boolean deleteSet(Long id) {
+    public void deleteSet(Long id) {
         if (!setRepository.existsById(id)) {
             throw new ResourceNotFoundException("Set not found with id " + id);
         }
         setRepository.deleteById(id);
-        return true;
     }
 
     @Override
@@ -91,11 +88,6 @@ public class SetServiceImpl implements SetService {
         return sets.stream().map(this::convertToSetDto).collect(Collectors.toList());
     }
 
-
-//    @Override
-//    public List<Set> findAllSetsByUserId(Long userId) {
-//        return setRepository.findByUserId(userId);
-//    }
 
     private SetDto convertToSetDto(Set set) {
         SetDto dto = new SetDto();

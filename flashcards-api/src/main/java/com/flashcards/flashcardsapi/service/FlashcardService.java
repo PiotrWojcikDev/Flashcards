@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface FlashcardService {
     FlashcardDto addFlashcard(FlashcardDto flashcardDto);
-    boolean deleteFlashcard(Long id) throws ResourceNotFoundException;
+    void deleteFlashcard(Long id) throws ResourceNotFoundException;
     FlashcardDto updateFlashcard(Long flashcardId, FlashcardDto flashcardDto) throws ResourceNotFoundException;
-
-    // Deklaracja dodatkowych metod
 }

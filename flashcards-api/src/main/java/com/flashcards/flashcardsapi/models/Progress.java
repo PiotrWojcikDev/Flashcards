@@ -26,6 +26,4 @@ public class Progress {
 
     @Column(nullable = false)
     private boolean isLearned;
-
-    // Getters and Setters
 }

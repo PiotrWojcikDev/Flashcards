@@ -27,22 +27,14 @@ public class FlashcardController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, String>> deleteFlashcard(@PathVariable Long id) {
-        boolean isDeleted = flashcardService.deleteFlashcard(id);
-        Map<String, String> response = new HashMap<>();
-        if (isDeleted) {
-            response.put("message", "Flashcard deleted successfully");
-            return ResponseEntity.ok(response);
-        } else {
-            response.put("message", "Flashcard not found");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
-        }
+    public ResponseEntity<Void> deleteFlashcard(@PathVariable Long id) {
+        flashcardService.deleteFlashcard(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{flashcardId}")
     public ResponseEntity<FlashcardDto> updateFlashcard(@PathVariable Long flashcardId, @RequestBody FlashcardDto flashcardDto) {
         FlashcardDto updatedFlashcard = flashcardService.updateFlashcard(flashcardId, flashcardDto);
-        System.out.println((updatedFlashcard));
         return ResponseEntity.ok(updatedFlashcard);
     }
 
@@ -50,5 +42,4 @@ public class FlashcardController {
     public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
-    // Dodatkowe endpointy
 }

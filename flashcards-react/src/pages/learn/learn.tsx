@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../../components/navbar/navbar';
 import styles from './learn.module.css';
 import LearningFinishedModal from '../../components/modals/learn/learning-finished-modal/learning-finished-modal';

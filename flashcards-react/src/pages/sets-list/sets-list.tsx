@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styles from './sets-list.module.css'; 
 import SingleSetComponent from '../../components/single-set/single-set';
-import { Link } from 'react-router-dom';
 import Navbar from '../../components/navbar/navbar';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { getAllSetsByUserId } from '../../services/set-service';
 import AddSetModal from '../../components/modals/set/add-set-modal/add-set-modal';
-import UpdateSetModal from '../../components/modals/set/update-set-modal/update-set-modal';
-import DeleteSetConfirmationModal from '../../components/modals/set/delete-set-confirmation-modal/delete-set-confirmation-modal';
 
 
 interface Set {
@@ -22,10 +19,7 @@ const SetsListComponent = () => {
     const [sets, setSets] = useState<Set[]>([]);
     const [filterText, setFilterText] = useState<string>('');
     const [showAddSetModal, setShowAddSetModal] = useState<boolean>(false);
-    const [showUpdateSetModal, setShowUpdateSetModal] = useState<boolean>(false);
-    const [showDeleteSetModal, setShowDeleteSetModal] = useState<boolean>(false);
-    const [selectedSet, setSelectedSet] = useState<Set | null>(null);
-
+    
 
     useEffect(() => {
         fetchSets();

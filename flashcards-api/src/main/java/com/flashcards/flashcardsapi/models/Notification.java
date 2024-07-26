@@ -22,6 +22,4 @@ public class Notification {
 
     @Column(nullable = false)
     private Timestamp timestamp;
-
-    // Getters and Setters
 }

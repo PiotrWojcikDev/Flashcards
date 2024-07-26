@@ -3,15 +3,12 @@ package com.flashcards.flashcardsapi.controllers;
 import com.flashcards.flashcardsapi.dto.FlashcardDto;
 import com.flashcards.flashcardsapi.dto.SetDto;
 import com.flashcards.flashcardsapi.exceptions.ResourceNotFoundException;
-import com.flashcards.flashcardsapi.models.Flashcard;
 import com.flashcards.flashcardsapi.models.Set;
 import com.flashcards.flashcardsapi.service.SetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,10 +21,7 @@ public class SetController {
 
     @PostMapping("/addSet")
     public ResponseEntity<SetDto> addSet(@RequestBody SetDto setDto) {
-        Set savedSet = setService.createSet(setDto);
-        SetDto savedSetDto = new SetDto();
-        savedSetDto.setSetId(savedSet.getSetId());
-        savedSetDto.setSetName(savedSet.getSetName());
+        SetDto savedSetDto = setService.createSet(setDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedSetDto);
     }
 
@@ -42,28 +36,21 @@ public class SetController {
     }
 
     @GetMapping("/user/{userId}")
-    public List<SetDto> getSetsByUserId(@PathVariable Long userId) {
-        return setService.getAllSetsByUserId(userId);
+    public ResponseEntity<List<SetDto>> getSetsByUserId(@PathVariable Long userId) {
+        List<SetDto> sets = setService.getAllSetsByUserId(userId);
+        return ResponseEntity.ok(sets);
     }
 
     @GetMapping("/{setId}/flashcards")
     public ResponseEntity<List<FlashcardDto>> getFlashcardsBySetId(@PathVariable Long setId) {
-        System.out.println("Id zbioru to: " + setId);
         List<FlashcardDto> flashcards = setService.getFlashcardsBySetId(setId);
         return ResponseEntity.ok(flashcards);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, String>> deleteSet(@PathVariable Long id) {
-        boolean isDeleted = setService.deleteSet(id);
-        if (isDeleted) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "Set deleted successfully");
-            return ResponseEntity.ok(response);
-        }
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Set not found");
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        setService.deleteSet(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
@@ -81,6 +68,4 @@ public class SetController {
     public ResponseEntity<String> handleGlobalException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + ex.getMessage());
     }
-
-    // Dodatkowe endpointy
 }

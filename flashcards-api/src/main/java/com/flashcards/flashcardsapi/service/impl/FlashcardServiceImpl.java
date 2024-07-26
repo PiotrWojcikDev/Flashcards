@@ -17,14 +17,12 @@ import java.util.stream.Collectors;
 @Service
 public class FlashcardServiceImpl implements FlashcardService {
 
-    private final FlashcardRepository flashcardRepository;
-    private final SetRepository setRepository;
+    @Autowired
+    private FlashcardRepository flashcardRepository;
 
     @Autowired
-    public FlashcardServiceImpl(FlashcardRepository flashcardRepository, SetRepository setRepository) {
-        this.flashcardRepository = flashcardRepository;
-        this.setRepository = setRepository;
-    }
+    private SetRepository setRepository;
+
 
     @Override
     @Transactional
@@ -43,12 +41,11 @@ public class FlashcardServiceImpl implements FlashcardService {
 
     @Override
     @Transactional
-    public boolean deleteFlashcard(Long id) throws ResourceNotFoundException {
+    public void deleteFlashcard(Long id) throws ResourceNotFoundException {
         if (!flashcardRepository.existsById(id)) {
-            return false;
+            throw new ResourceNotFoundException("Flashcard not found with id " + id);
         }
         flashcardRepository.deleteById(id);
-        return true;
     }
 
     @Override
@@ -57,7 +54,6 @@ public class FlashcardServiceImpl implements FlashcardService {
         Flashcard flashcard = flashcardRepository.findById(flashcardId)
                 .orElseThrow(() -> new ResourceNotFoundException("Flashcard not found"));
 
-        // Aktualizacja pól flashcard
         flashcard.setFront(flashcardDto.getFront());
         flashcard.setBack(flashcardDto.getBack());
 

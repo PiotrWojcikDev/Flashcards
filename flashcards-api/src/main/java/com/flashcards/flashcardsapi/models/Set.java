@@ -35,5 +35,4 @@ public class Set {
 
     @OneToMany(mappedBy = "set", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Flashcard> flashcards;
-    // Getters and Setters
 }

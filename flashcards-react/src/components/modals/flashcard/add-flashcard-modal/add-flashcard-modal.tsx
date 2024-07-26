@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './add-flashcard-modal.module.css'; 
-import { getLoggedInUserId } from '../../../../services/auth-service';
 import { addFlashcard } from '../../../../services/flashcard-service';
 import { useParams } from 'react-router-dom';
 

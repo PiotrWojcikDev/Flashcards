@@ -20,6 +20,4 @@ public class Flashcard {
     @ManyToOne
     @JoinColumn(name = "set_id", nullable = false)
     private Set set;
-
-    // Getters and Setters
 }

@@ -38,5 +38,4 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Set> sets;
-    // Getters and Setters
 }

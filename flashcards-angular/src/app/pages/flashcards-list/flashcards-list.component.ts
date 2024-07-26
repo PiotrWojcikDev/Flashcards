@@ -90,6 +90,6 @@ export class FlashcardsListComponent {
 
   refreshList() {
     this.getSetById(this.setId);
-    this.getAllFlashcardsBySetId(this.setId);  // Załóżmy, że "1" to ID użytkownika
+    this.getAllFlashcardsBySetId(this.setId);  
   }
 }
