@@ -8,9 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  // isUserLoggedIn$ = new BehaviorSubject<boolean>(false);
   isUserLoggedIn: boolean = false;
-
 
   constructor(
     private http: HttpClient
@@ -32,8 +30,12 @@ export class AuthService {
     this.isUserLoggedIn = false;
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return this.isUserLoggedIn;
+  }
+
+  getCurrentUserId(): string | null {
+    return localStorage.getItem('userId');
   }
 
   loginService(loginObj: any) {

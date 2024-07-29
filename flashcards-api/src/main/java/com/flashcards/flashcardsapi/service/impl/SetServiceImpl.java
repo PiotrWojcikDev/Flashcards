@@ -96,6 +96,7 @@ public class SetServiceImpl implements SetService {
         dto.setCreatedAt(set.getCreatedAt());
         dto.setUpdatedAt(set.getUpdatedAt());
         dto.setFlashcardCount(set.getFlashcardCount());
+        dto.setUserId(set.getUser().getUserId());
         return dto;
     }
 

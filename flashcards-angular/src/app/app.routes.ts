@@ -6,13 +6,14 @@ import { FlashcardsListComponent } from './pages/flashcards-list/flashcards-list
 import { LearnComponent } from './pages/learn/learn.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegistrationComponent },
     { path: 'sets', component: SetsListComponent },
-    { path: 'sets/:setId/flashcards', component: FlashcardsListComponent },
-    { path: 'sets/:setId/learn', component: LearnComponent },
+    { path: 'sets/:setId/flashcards', component: FlashcardsListComponent, canActivate: [authGuard] },
+    { path: 'sets/:setId/learn', component: LearnComponent, canActivate: [authGuard] },
     { path: '', component: HomeComponent },
     { path: '**', component: PageNotFoundComponent }
 ];

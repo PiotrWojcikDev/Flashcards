@@ -14,7 +14,7 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
     FormsModule,
     NavbarComponent,
     SingleSetComponent, 
-    AddSetModalComponent
+    AddSetModalComponent,
   ],
   templateUrl: './sets-list.component.html',
   styleUrls: ['./sets-list.component.css'],
