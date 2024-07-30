@@ -1,0 +1,3 @@
+insert into users (user_id, first_name, last_name, email, phone_number , user_password , created_at , last_login ) values (1, 'Jan', 'Kowalski', 'j.kowalski@gmail.com', '520-865-315', 'qwerty', '22-04-2024', '24-09-2023');
+insert into users (user_id, first_name, last_name, email, phone_number , user_password , created_at , last_login ) values (2, 'Shayne', 'Russel', 'srussel1@xrea.com', '768-336-673', 'jT7\Lo%j''`g`O>WA', '05-09-2023', '25-03-2024');
+insert into users (user_id, first_name, last_name, email, phone_number , user_password , created_at , last_login ) values (3, 'Rab', 'Forcade', 'rforcade2@elegantthemes.com', '318-718-021', 'nN4!3xT1&\>pPOO', '01-06-2023', '17-07-2023');
